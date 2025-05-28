@@ -9,6 +9,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './Intercepter/auth.interceptor';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthInterceptor } from './Intercepter/auth.interceptor';
     BrowserModule,
     AppRoutingModule,
     SharedModule,RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule  
   ],
   providers: [
     {
