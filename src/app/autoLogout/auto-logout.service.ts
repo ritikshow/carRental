@@ -6,15 +6,21 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AutoLogoutService {
   private timeout: any;
-  private readonly AUTO_LOGOUT_TIME = 10 * 60 * 1000; // 30 mins
+  private readonly AUTO_LOGOUT_TIME = 1 * 60 * 1000; // 5 minutes (adjust as needed)
+  private listenersInitialized = false;
 
   constructor(private router: Router, private ngZone: NgZone) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        // Only activate auto logout inside admin routes
-        if (event.url.startsWith('/admin') && localStorage.getItem('jwtToken')) {
-          this.initListener();
-          this.startTimer();
+        const isAdminRoute = event.urlAfterRedirects.startsWith('/admin');
+        const hasToken = !!localStorage.getItem('jwtToken');
+
+        if (isAdminRoute && hasToken) {
+          if (!this.listenersInitialized) {
+            this.initListeners();
+            this.listenersInitialized = true;
+          }
+          this.resetTimer();
         } else {
           this.clearTimer();
         }
@@ -22,31 +28,35 @@ export class AutoLogoutService {
     });
   }
 
-  private initListener() {
+  private initListeners(): void {
     const events = ['click', 'mousemove', 'keydown', 'scroll', 'touchstart'];
+
     events.forEach(event =>
       window.addEventListener(event, () => this.resetTimer())
     );
   }
 
-  private startTimer() {
-    this.timeout = setTimeout(() => this.logout(), this.AUTO_LOGOUT_TIME);
+  private startTimer(): void {
+    this.timeout = this.ngZone.runOutsideAngular(() =>
+      setTimeout(() => this.ngZone.run(() => this.logout()), this.AUTO_LOGOUT_TIME)
+    );
   }
 
-  private resetTimer() {
+  private resetTimer(): void {
     this.clearTimer();
     this.startTimer();
   }
 
-  private clearTimer() {
+  private clearTimer(): void {
     if (this.timeout) {
       clearTimeout(this.timeout);
+      this.timeout = null;
     }
   }
 
-  private logout() {
+  private logout(): void {
     localStorage.removeItem('jwtToken');
+    alert('You have been logged out due to inactivity.');
     this.router.navigate(['/login']);
-    alert('Logged out due to 30 minutes of inactivity.');
   }
 }
