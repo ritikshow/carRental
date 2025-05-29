@@ -7,6 +7,7 @@ import { CarComponent } from './car/car.component';
 import { BookingComponent } from './booking/booking.component';
 import { DriverComponent } from './driver/driver.component';
 import { ContactComponent } from './contact/contact.component';
+import { AdminSidebarComponent } from '../shared/admin-sidebar/admin-sidebar.component';
 
 
 @NgModule({

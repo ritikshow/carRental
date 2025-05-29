@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
     AdminSidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     NavbarComponent,
