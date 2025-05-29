@@ -8,43 +8,34 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  images: string[] = [];
+  currentImageIndex = 0;
 
- constructor(
-  private api: ApiService,
-  private router: Router
-) {}
+  constructor(private api: ApiService, private router: Router) {}
+
   ngOnInit(): void {
-    
+    this.images = Array.from({ length: 10 }, (_, i) => `assets/login-images/car${i + 1}.jpg`);
+
+    setInterval(() => {
+      this.currentImageIndex = (this.currentImageIndex + 1) % this.images.length;
+    }, 4000);
   }
 
   onSubmit(username: string, password: string): void {
-  username = username.trim();
-  password = password.trim();
+    username = username.trim();
+    password = password.trim();
 
-  if (!username || !password) {
-    alert('Please enter both username and password.');
-    return;
-  }
+    if (!username || !password) {
+      alert('Please enter both username and password.');
+      return;
+    }
 
-  const loginData = {
-    username: username,
-    password: password
-  };
-
-  debugger;
-  this.api.login(loginData).subscribe({
-    next: (response: any) => {
-      console.log('Login success:', response);
-      // Save token, redirect, etc.
-      localStorage.setItem('jwtToken', response.token); // in login component/service
-
-      //  const token = response.token;
-      //   localStorage.setItem('jwtToken', token); 
+    const loginData = { username, password };
+    this.api.login(loginData).subscribe({
+      next: (response: any) => {
+        localStorage.setItem('jwtToken', response.token);
         this.router.navigate(['/admin/dashboard']);
-
-    },
-    
-  });
-}
-
+      }
+    });
+  }
 }

@@ -5,6 +5,14 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
+  // ✅ Login page without navbar/footer
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
+  },
+
+  // ✅ Public pages with main layout (navbar/footer)
   {
     path: '',
     component: MainLayoutComponent,
@@ -16,10 +24,12 @@ const routes: Routes = [
       },
     ],
   },
+
+  // ✅ Admin panel with admin layout
   {
     path: 'admin',
     component: AdminLayoutComponent,
-   canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -28,6 +38,7 @@ const routes: Routes = [
       },
     ],
   },
+
   { path: '**', redirectTo: '' },
 ];
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AutoLogoutService } from './autoLogout/auto-logout.service';
+import { AutoLogoutService } from './autoLogout/auto-logout.service'; // Adjust path if different
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,9 @@ import { AutoLogoutService } from './autoLogout/auto-logout.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor(private autoLogoutService: AutoLogoutService) {}
   title = 'car-rental-frontend';
+
+  constructor(private autoLogoutService: AutoLogoutService) {
+    // Just injecting it is enough to activate the logic
+  }
 }

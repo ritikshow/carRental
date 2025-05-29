@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
     OurServicesComponent,
     ContactComponent,
     BookingComponent,
-    LoginComponent
+    
   ],
   imports: [
     CommonModule,

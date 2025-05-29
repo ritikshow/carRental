@@ -1,16 +1,14 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (submit)="onSubmit(username.value, password.value); $event.preventDefault()">
-    <div>
-      <label for="username">Username:</label>
-      <input type="text" id="username" #username required />
-    </div>
+<div class="login-page">
+  <div class="image-box">
+    <img [src]="images[currentImageIndex]" alt="Slideshow" />
+  </div>
 
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" #password required />
-    </div>
-
-    <button type="submit">Submit</button>
-  </form>
+  <div class="form-box">
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit(username.value, password.value)">
+      <input type="text" #username placeholder="Username" required />
+      <input type="password" #password placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
 </div>
