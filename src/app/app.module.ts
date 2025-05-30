@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import {MatButtonModule} from '@angular/material/button';
      BrowserAnimationsModule,
      MatIconModule,
      MatToolbarModule,
-     MatButtonModule
+     MatButtonModule,MatDialogModule
      
 
 

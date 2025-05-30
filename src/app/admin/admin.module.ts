@@ -10,7 +10,12 @@ import { ContactComponent } from './contact/contact.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { AdminSidebarComponent } from '../shared/admin-sidebar/admin-sidebar.component';
-import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { DriverEditAddComponent } from './driver/driver-edit-add/driver-edit-add.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 @NgModule({
@@ -20,13 +25,20 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
     BookingComponent,
     DriverComponent,
     ContactComponent,
+     DriverEditAddComponent 
+
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatToolbarModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
+    
+  
   ]
 })
 export class AdminModule {
