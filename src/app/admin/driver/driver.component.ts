@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DriverEditAddComponent } from './driver-edit-add/driver-edit-add.component';
 
 @Component({
   selector: 'app-driver',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class DriverComponent {
 
+
+  
+ constructor(private _dialog :MatDialog){}
+
+ OpenAddEditEmpForm(){
+  this._dialog.open(DriverEditAddComponent)
+ }
 }

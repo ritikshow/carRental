@@ -7,7 +7,10 @@ import { CarComponent } from './car/car.component';
 import { BookingComponent } from './booking/booking.component';
 import { DriverComponent } from './driver/driver.component';
 import { ContactComponent } from './contact/contact.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { AdminSidebarComponent } from '../shared/admin-sidebar/admin-sidebar.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -16,11 +19,18 @@ import { AdminSidebarComponent } from '../shared/admin-sidebar/admin-sidebar.com
     CarComponent,
     BookingComponent,
     DriverComponent,
-    ContactComponent
+    ContactComponent,
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatDialogModule
   ]
 })
-export class AdminModule { }
+export class AdminModule {
+
+
+
+ }

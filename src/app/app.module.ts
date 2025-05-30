@@ -10,6 +10,11 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './Intercepter/auth.interceptor';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +28,15 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     SharedModule,RouterModule,
     HttpClientModule,
-    FormsModule  ,RouterModule
+    FormsModule,
+    RouterModule,
+     BrowserAnimationsModule,
+     MatIconModule,
+     MatToolbarModule,
+     MatButtonModule
+     
+
+
   ],
   providers: [
     {

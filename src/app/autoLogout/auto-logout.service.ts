@@ -6,7 +6,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class AutoLogoutService {
   private timeout: any;
-  private readonly AUTO_LOGOUT_TIME = 1 * 60 * 1000; // 1 minute
+  private readonly AUTO_LOGOUT_TIME = 5 * 60 * 1000; // 1 minute
   private listenersInitialized = false;
 
   constructor(private router: Router, private ngZone: NgZone) {
