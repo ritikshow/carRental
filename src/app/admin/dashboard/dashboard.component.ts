@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getcar(){
     debugger;
-this.api.getCars().subscribe({
+      this.api.getCars().subscribe({
       next: (data) => {
         console.log('Cars:', data);
         this.cars = data;
