@@ -2,28 +2,44 @@
   <h1>Driver Form</h1>
 </div>
 
-<div mat-dialog-content>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <mat-form-field appearance="outline" >
+<form [formGroup]="DriverForm" (ngSubmit)="Submit()">
+  <div mat-dialog-content class="content">
+    <div class="container">
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
           <mat-label>Name</mat-label>
-          <input matInput type="text" placeholder="Enter your name">
+          <input matInput type="text" formControlName="name" placeholder="Enter your name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" formControlName="email" placeholder="Enter your Email">
         </mat-form-field>
       </div>
-      <div class="col">
-        <mat-form-field appearance="outline" >
-          <mat-label>Email</mat-label>
-          <input matInput type="text" placeholder="Enter your Email">
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone no</mat-label>
+          <input matInput type="text" formControlName="phone" placeholder="Enter Phone No">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Age</mat-label>
+          <input matInput type="text" formControlName="age" placeholder="Enter Age">
+        </mat-form-field>
+      </div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address</mat-label>
+          <textarea matInput formControlName="address" placeholder="Enter Address"></textarea>
         </mat-form-field>
       </div>
     </div>
   </div>
-</div>
 
-
-
-<div mat-dialog-actions >
-  <button mat-raised-button >Cancel</button>
-  <button mat-raised-button color="primary">Save</button>
-</div>
+  <div mat-dialog-actions class="action">
+    <button mat-raised-button type="button">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </div>
+</form>

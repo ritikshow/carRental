@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { DriverEditAddComponent } from './driver/driver-edit-add/driver-edit-add.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -25,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
     BookingComponent,
     DriverComponent,
     ContactComponent,
-     DriverEditAddComponent 
+    DriverEditAddComponent 
 
   ],
   imports: [
@@ -36,7 +37,8 @@ import {MatInputModule} from '@angular/material/input';
     MatDialogModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule
     
   
   ]
