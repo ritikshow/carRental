@@ -21,21 +21,25 @@ export class ApiService {
     return this.http.get(`${BASE_URL}/Car`);
   }
 
-  // Driver API
+  // Driver API=================================================
 
   CreateDriver(data: any): Observable<any> {
     return this.http.post(`${BASE_URL}/Driver`, data);
   }
-
   GetAllDriver(): Observable<any> {
     return this.http.get(`${BASE_URL}/Driver`);
   }
   DeleteDriverbyId(id: number): Observable<any> {
   return this.http.delete(`${BASE_URL}/Driver/${id}`);
 }
- EditdriverById(id:number,obj:any):Observable<any>{
+   EditdriverById(id:number,obj:any):Observable<any>{
    return this.http.put(`${BASE_URL}/Driver/${id}`,obj);
  }
  
+// Contact API=================================================
 
+  CreateContact(obj:any): Observable<any>{
+    return this.http.post(`${BASE_URL}/Contanct`,obj)
+  }
+  
 }

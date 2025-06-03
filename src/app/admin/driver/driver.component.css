@@ -1,11 +1,34 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-.main-body{
-  max-width: 1248px;
-  margin: 0,auto;
-  mat-form-field{
-    width: 100%;
 
-  }
+.main-body {
+  max-width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  min-width: 600px; /* Optional: ensures the table doesn't shrink too much */
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+mat-toolbar button {
+  margin-left: auto;
 }

@@ -1,0 +1,19 @@
+.text-orange {
+  color: #ff7b00;
+}
+
+.custom-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.card-title span {
+  font-size: 1.8rem;
+}

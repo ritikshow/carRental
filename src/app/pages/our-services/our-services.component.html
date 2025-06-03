@@ -1,7 +1,20 @@
-<h2>Our Services</h2>
-<ul>
-  <li>Daily Rentals</li>
-  <li>Luxury Car Bookings</li>
-  <li>Driver Services</li>
-  <li>City-to-City Travel</li>
-</ul>
+<section class="services-section">
+  <h2 class="text-center text-2xl font-bold mb-2">Our Services</h2>
+  <p class="text-center text-gray-600 mb-6">
+    Experience convenience and safety with SS Car Rental's trusted services.
+  </p>
+
+  <div class="services-grid">
+    <div
+      class="service-card"
+      *ngFor="let service of services"
+      [@fadeUp]
+    >
+      <div class="icon">
+        <i [class]="service.icon"></i>
+      </div>
+      <h3>{{ service.title }}</h3>
+      <p>{{ service.description }}</p>
+    </div>
+  </div>
+</section>

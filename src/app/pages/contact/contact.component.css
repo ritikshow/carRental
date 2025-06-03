@@ -1,0 +1,92 @@
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px; /* ✅ This adds space from top */
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: bold;
+}
+.contact-content {
+  display: flex;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 30px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Left: Form */
+.contact-form {
+  flex: 1;
+}
+
+.contact-form form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 0 0 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  flex: 0 0 100%;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input, textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button {
+  padding: 12px 24px;
+  background-color: #f4b400;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #d99d00;
+}
+
+/* Right: Info + Map */
+.contact-info {
+  flex: 1;
+  margin-top: 10%;
+}
+
+.info-box {
+  margin-bottom: 20px;
+}
+
+iframe {
+  border-radius: 6px;
+  width: 100%;
+  height: 250px;
+  border: none;
+}

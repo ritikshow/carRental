@@ -8,6 +8,8 @@ import { ContactComponent } from './contact/contact.component';
 import { BookingComponent } from './booking/booking.component';
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 @NgModule({
@@ -16,11 +18,12 @@ import { RouterModule } from '@angular/router';
     OurServicesComponent,
     ContactComponent,
     BookingComponent,
+    AboutUsComponent,
     
   ],
   imports: [
     CommonModule,
-    PagesRoutingModule,RouterModule
+    PagesRoutingModule,RouterModule,ReactiveFormsModule 
   ]
 })
 export class PagesModule { }
