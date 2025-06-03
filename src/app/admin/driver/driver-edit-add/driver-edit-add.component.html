@@ -13,7 +13,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Email</mat-label>
-          <input matInput type="text" formControlName="email" placeholder="Enter your Email">
+          <input matInput type="text" formControlName="gmail" placeholder="Enter your Email">
         </mat-form-field>
       </div>
 
@@ -39,7 +39,7 @@
   </div>
 
   <div mat-dialog-actions class="action">
-    <button mat-raised-button type="button">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button type="button"[mat-dialog-close]="false">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">{{data?'Update':'Save'}}</button>
   </div>
 </form>
