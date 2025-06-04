@@ -79,8 +79,10 @@ export class BookingComponent implements OnInit {
   Getcar(){
     debugger;
       this.api.GetCars().subscribe({next: (res:any) => {
-        console.log('Cars:', res);
+        console.log('Carstype:', res);
+
         this.AllCars=res.data;
+
        
       }
       
