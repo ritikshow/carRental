@@ -16,11 +16,6 @@ export class ApiService {
     return this.http.post(`${BASE_URL}/Authentication/login`, data);
   }
 
-  // GET all cars
-  getCars(): Observable<any> {
-    return this.http.get(`${BASE_URL}/Car`);
-  }
-
   // Driver API=================================================
 
   CreateDriver(data: any): Observable<any> {
@@ -40,6 +35,13 @@ export class ApiService {
 
   CreateContact(obj:any): Observable<any>{
     return this.http.post(`${BASE_URL}/Contanct`,obj)
+  }
+
+
+// car Type API=================================================
+
+ GetCars(): Observable<any> {
+    return this.http.get(`${BASE_URL}/Car`);
   }
   
 }
