@@ -1,3 +1,4 @@
+/* Base layout for navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -6,19 +7,14 @@
   padding: 10px 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-wrap: nowrap;
 }
 
+/* Logo styles */
 .navbar-left .logo {
   height: 50px;
   width: auto;
   cursor: pointer;
-}
-
-.navbar-right {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  color: #fff;
 }
 
 .logo-name {
@@ -29,6 +25,15 @@
   cursor: default;
 }
 
+/* Links - horizontal layout by default */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  color: #fff;
+}
+
+/* Navigation links */
 .nav-link {
   color: #bbb;
   text-decoration: none;
@@ -57,4 +62,41 @@
   background-color: #3f51b5;
   color: white;
   text-decoration: none;
+}
+
+/* Hamburger icon - hidden by default */
+.hamburger {
+  display: none;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Responsive layout for mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  /* Hide links on mobile unless menu is open */
+  .navbar-right {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .navbar-right.active {
+    display: flex;
+  }
+
+  .navbar-right .nav-link {
+    padding: 10px 20px;
+    text-align: center;
+  }
 }

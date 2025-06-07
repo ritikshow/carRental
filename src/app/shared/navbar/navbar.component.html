@@ -1,15 +1,17 @@
-
 <nav class="navbar">
   <div class="navbar-left">
-    <img src="assets\Logo\car2.jpg" alt="Logo" class="logo" />
+    <img src="assets/Logo/car2.jpg" alt="Logo" class="logo" />
     <span class="logo-name">LogoName</span>
   </div>
-  <div class="navbar-right">
-    <a href="/" class="nav-link">Home</a>
-    <a href="/our-services" class="nav-link">Our Service</a>
-    <a href="/contact" class="nav-link">Contact</a>
-    <a href="/booking" class="nav-link">Booking</a>
-    <a href="/about" class="nav-link">About_Us</a>
-    <a href="/login" class="nav-link login-link">Login</a>
+
+  <div class="hamburger" (click)="toggleMenu()">☰</div>
+
+  <div class="navbar-right" [class.active]="menuOpen">
+    <a routerLink="/" class="nav-link" routerLinkActive="active-link">Home</a>
+    <a routerLink="/our-services" class="nav-link" routerLinkActive="active-link">Our Service</a>
+    <a routerLink="/contact" class="nav-link" routerLinkActive="active-link">Contact</a>
+    <a routerLink="/booking" class="nav-link" routerLinkActive="active-link">Booking</a>
+    <a routerLink="/about" class="nav-link" routerLinkActive="active-link">About Us</a>
+    <a routerLink="/login" class="nav-link login-link" routerLinkActive="active-link">Login</a>
   </div>
 </nav>
