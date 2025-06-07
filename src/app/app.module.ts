@@ -17,11 +17,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
     AdminLayoutComponent,
+   
+    
     
   ],
   imports: [
@@ -34,7 +37,10 @@ import { MatDialogModule } from '@angular/material/dialog';
      BrowserAnimationsModule,
      MatIconModule,
      MatToolbarModule,
-     MatButtonModule,MatDialogModule
+     MatButtonModule,
+     MatDialogModule,
+     
+     
      
 
 

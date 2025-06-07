@@ -15,18 +15,9 @@ export class DashboardComponent implements OnInit {
     private router: Router
   ) {}
   ngOnInit(): void {
-    this.getcar();
+   
   }
 
 
-  getcar(){
-    debugger;
-      this.api.getCars().subscribe({
-      next: (data) => {
-        console.log('Cars:', data);
-        this.cars = data;
-      }
-      
-    });
-  }
+  
 }

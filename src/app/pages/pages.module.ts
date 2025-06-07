@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { FleetComponent } from './fleet/fleet.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
     ContactComponent,
     BookingComponent,
     AboutUsComponent,
+    FleetComponent,
     
   ],
   imports: [

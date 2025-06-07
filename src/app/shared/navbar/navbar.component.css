@@ -1,3 +1,4 @@
+/* === Base Styles === */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -6,27 +7,32 @@
   padding: 10px 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  flex-wrap: wrap;
 }
 
-.navbar-left .logo {
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
   height: 50px;
   width: auto;
   cursor: pointer;
+}
+
+.logo-name {
+  font-size: 22px;
+  font-weight: 700;
+  margin-left: 10px;
+  color: #f0f0f0;
+  cursor: default;
 }
 
 .navbar-right {
   display: flex;
   align-items: center;
   gap: 25px;
-  color: #fff;
-}
-
-.logo-name {
-  font-size: 22px;
-  font-weight: 700;
-  margin-right: 40px;
-  color: #f0f0f0;
-  cursor: default;
 }
 
 .nav-link {
@@ -56,5 +62,43 @@
 .login-link:hover {
   background-color: #3f51b5;
   color: white;
-  text-decoration: none;
+}
+
+/* === Hamburger Menu (Mobile Only) === */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* === Responsive Styles === */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navbar-right {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 15px;
+  }
+
+  .navbar-right.active {
+    display: flex;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    border-bottom: 1px solid #333;
+  }
+
+  .login-link {
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+  }
 }
