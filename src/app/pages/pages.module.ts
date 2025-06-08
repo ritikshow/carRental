@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { FleetComponent } from './fleet/fleet.component';
+import { BookingFormComponent } from './booking/booking-form/booking-form.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FleetComponent } from './fleet/fleet.component';
     BookingComponent,
     AboutUsComponent,
     FleetComponent,
+    BookingFormComponent,
     
   ],
   imports: [

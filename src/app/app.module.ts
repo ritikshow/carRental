@@ -14,7 +14,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import {MatDialogModule } from '@angular/material/dialog';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 
@@ -39,6 +40,7 @@ import { MatDialogModule } from '@angular/material/dialog';
      MatToolbarModule,
      MatButtonModule,
      MatDialogModule,
+     NgbModule,
      
      
      

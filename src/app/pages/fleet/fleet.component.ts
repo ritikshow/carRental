@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BookingFormComponent } from '../booking/booking-form/booking-form.component';
 
 @Component({
   selector: 'app-fleet',
@@ -6,6 +8,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./fleet.component.css']
 })
 export class FleetComponent {
+
+
+  constructor(
+         private modalService: NgbModal,
+  )
+  {}
   steps = [
     { number: 1, iconClass: 'fas fa-car fa-3x text-warning', description: 'Choose your car' },
     { number: 2, iconClass: 'fas fa-file-alt fa-3x text-warning', description: 'Fill out the booking form' },
@@ -31,6 +39,10 @@ export class FleetComponent {
 
   isSmallScreen(): boolean {
   return window.innerWidth < 768;
+}
+ 
+OnSubmit(){
+  this.modalService.open(BookingFormComponent,{ backdrop: 'static',windowClass: 'main_add_popup', keyboard: true, centered: true })
 }
 
 }
