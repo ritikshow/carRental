@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingFormComponent } from '../booking/booking-form/booking-form.component';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-fleet',
   templateUrl: './fleet.component.html',
   styleUrls: ['./fleet.component.css']
 })
-export class FleetComponent {
+export class FleetComponent implements OnInit {
+  AllCars: any;
 
 
   constructor(
          private modalService: NgbModal,
+         private api:ApiService
   )
   {}
+  ngOnInit(): void {
+    this.Getcar();
+  }
   steps = [
     { number: 1, iconClass: 'fas fa-car fa-3x text-warning', description: 'Choose your car' },
     { number: 2, iconClass: 'fas fa-file-alt fa-3x text-warning', description: 'Fill out the booking form' },
@@ -45,4 +51,17 @@ OnSubmit(){
   this.modalService.open(BookingFormComponent,{ backdrop: 'static',windowClass: 'main_add_popup', keyboard: true, centered: true })
 }
 
+
+ Getcar(){
+    debugger;
+      this.api.GetCars().subscribe({next: (res:any) => {
+        console.log('Carstype:', res);
+          
+        this.AllCars=res.data;
+
+       
+      }
+      
+    });
+  }
 }

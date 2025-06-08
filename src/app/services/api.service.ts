@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
+//const BASE_URL = 'https://localhost:7055/api';
 //https://localhost:7055/api/Authentication
 
 @Injectable({
@@ -43,5 +44,14 @@ export class ApiService {
  GetCars(): Observable<any> {
     return this.http.get(`${BASE_URL}/Car`);
   }
+  CreateCar(obj :any): Observable<any>{
+    return this.http.post(`${BASE_URL}/Car`,obj)
+  }
+
+// Booking Api ====================================
+
+CreateBooking(obj:any):Observable<any>{
+  return this.http.post(`${BASE_URL}/Booking`,obj)
+}
   
 }

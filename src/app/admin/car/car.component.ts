@@ -1,10 +1,89 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-car',
   templateUrl: './car.component.html',
   styleUrls: ['./car.component.css']
 })
-export class CarComponent {
+export class CarComponent implements OnInit {
+  carForm!: FormGroup;
+  isSubmitted = false;
+  selectedFile: File | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
 
+  constructor(
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private api: ApiService
+  ) {}
+
+  ngOnInit(): void {
+    this.carForm = this.fb.group({
+      carName: ['', Validators.required],
+      carModel: ['', Validators.required],
+      description: ['']
+    });
+  }
+
+  OpenCarForm(content: any) {
+    this.carForm.reset();
+    this.isSubmitted = false;
+    this.previewUrl = null;
+    this.selectedFile = null;
+
+    this.modalService.open(content, {
+      ariaLabelledBy: 'modal-basic-title',
+      keyboard: false,
+      backdrop: 'static',
+      windowClass: 'main_add_popup',
+      centered: true
+    }).result.then(() => {}, () => {});
+  }
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files?.[0] ?? null;
+
+    if (this.selectedFile) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(this.selectedFile);
+    } else {
+      this.previewUrl = null;
+    }
+  }
+
+  onSubmit(): void {
+    this.isSubmitted = true;
+    if (this.carForm.invalid) return;
+
+    const formData = new FormData();
+    formData.append('CarName', this.carForm.get('carName')?.value);
+    formData.append('CarModel', this.carForm.get('carModel')?.value);
+    formData.append('Description', this.carForm.get('description')?.value || '');
+    if (this.selectedFile) {
+      formData.append('ImageFile', this.selectedFile);
+    }
+
+    this.api.CreateCar(formData).subscribe({
+      next: (res: any) => {
+        alert('Car added successfully!');
+        this.modalService.dismissAll(); // close modal on success
+        this.carForm.reset();
+        this.isSubmitted = false;
+        this.previewUrl = null;
+        this.selectedFile = null;
+      },
+      error: (err) => {
+        alert('Failed to add car. Please try again.');
+        console.error(err);
+      }
+    });
+  }
 }

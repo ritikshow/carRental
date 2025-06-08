@@ -37,10 +37,11 @@ export class BookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.bookingForm = this.fb.group({
       cartype: ['', Validators.required],
       BookingType: ['', Validators.required],
-      Phone_no: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      Phone_no: ['', Validators.required, ],
       Name: ['', Validators.required],
       Email: ['', [Validators.required, Validators.email]],
       PickupLocation: ['', Validators.required],
@@ -76,7 +77,29 @@ export class BookingComponent implements OnInit {
   onSubmit(): void {
     if (this.bookingForm.valid) {
       console.log('Booking Data:', this.bookingForm.value);
-     
+       const formDataRaw = this.bookingForm.value;
+
+    const formData = new FormData();
+    formData.append('Name', formDataRaw.Name);
+    formData.append('Email', formDataRaw.Email);
+    formData.append('cartype', formDataRaw.cartype);
+     formData.append('Phone_no', formDataRaw.Phone_no);
+    formData.append('BookingType', formDataRaw.BookingType);
+    formData.append('PickupLocation', formDataRaw.PickupLocation);
+    formData.append('PickupDate', formDataRaw.PickupDate);
+    formData.append('PickupTime',  formDataRaw.PickupTime);
+    formData.append('DropLocation', formDataRaw.DropLocation);
+    formData.append('Dropdate',formDataRaw.Dropdate);
+    formData.append('Droptime',  formDataRaw.Droptime);
+    formData.append('BookingDate',formDataRaw.BookingDate);
+    formData.append('CompanyEnabled', formDataRaw.CompanyEnabled);
+    formData.append('CompanyName', formDataRaw.CompanyName);
+    formData.append('CompanyDescription', formDataRaw.CompanyDescription);
+
+      this.api.CreateBooking(formData).subscribe({next:(res:any)=>{
+        console.log("Booking:",res)
+          this.bookingForm.reset();
+      }})
       // send to API
     }
   }

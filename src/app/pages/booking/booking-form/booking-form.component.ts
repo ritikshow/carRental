@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-booking-form',
@@ -15,6 +16,7 @@ export class BookingFormComponent implements OnInit {
    
   constructor(private fb: FormBuilder,
      private activeModal: NgbActiveModal,
+     private api : ApiService
   ) {}
 
   ngOnInit(): void {
@@ -33,7 +35,8 @@ export class BookingFormComponent implements OnInit {
       bookingDate: [''],
       addCompany: [false],
       companyName: [''],
-      companyDescription: ['']
+      companyDescription: [''],
+        CompanyEnabled: [false],
     });
 
     // Disable company fields by default
@@ -60,12 +63,36 @@ export class BookingFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(): void {
+    debugger;
     if (this.bookingForm.valid) {
-      console.log(this.bookingForm.value);
+      console.log('Booking Data:', this.bookingForm.value);
+       const formDataRaw = this.bookingForm.value;
+
+    const formData = new FormData();
+    formData.append('Name', formDataRaw.name);
+    formData.append('Email', formDataRaw.email);
+    formData.append('cartype', formDataRaw.carType);
+     formData.append('Phone_no', formDataRaw.phone);
+    formData.append('BookingType', formDataRaw.bookingType);
+    formData.append('PickupLocation', formDataRaw.pickupLocation);
+    formData.append('PickupDate', formDataRaw.pickupDate);
+    formData.append('PickupTime',  formDataRaw.pickupTime);
+    formData.append('DropLocation', formDataRaw.dropLocation);
+    formData.append('Dropdate',formDataRaw.dropDate);
+    formData.append('Droptime',  formDataRaw.dropTime);
+    formData.append('BookingDate',formDataRaw.bookingDate);
+    formData.append('CompanyEnabled', formDataRaw.CompanyEnabled);
+    formData.append('CompanyName', formDataRaw.companyName);
+    formData.append('CompanyDescription', formDataRaw.companyDescription);
+
+      this.api.CreateBooking(formData).subscribe({next:(res:any)=>{
+        console.log("Booking:",res)
+          this.bookingForm.reset();
+      }})
+      // send to API
     }
   }
-
    closeModal() {
     this.activeModal.close();
   }

@@ -39,11 +39,11 @@
           'flex-nowrap overflow-auto': isSmallScreen()
         }"
       >
-        <div class="col-10 col-sm-6 col-md-4 col-lg-3" *ngFor="let car of cars">
+        <div class="col-10 col-sm-6 col-md-4 col-lg-3" *ngFor="let car of AllCars">
           <div class="card h-100 car-card text-center animate-hover">
-            <img [src]="car.image" class="card-img-top p-3" alt="{{ car.name }}">
+            <img [src]="car.imagePath" class="card-img-top p-3" alt="{{ car.carName }}">
             <div class="card-body">
-              <h5 class="card-title">{{ car.name }}</h5>
+              <h5 class="card-title">{{ car.carName }}</h5>
               <button class="btn btn-warning mt-2" (click)="OnSubmit()">Book Now</button>
             </div>
           </div>
