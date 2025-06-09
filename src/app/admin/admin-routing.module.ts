@@ -5,6 +5,7 @@ import { CarComponent } from './car/car.component';
 import { BookingComponent } from './booking/booking.component';
 import { DriverComponent } from './driver/driver.component';
 import { ContactComponent } from './contact/contact.component';
+import { MasterBookingTypeComponent } from './master-booking-type/master-booking-type.component';
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'booking', component: BookingComponent },
   { path: 'driver', component: DriverComponent },
   { path: 'contact', component: ContactComponent },
+   { path: 'booking_type', component: MasterBookingTypeComponent },
 ];
 
 @NgModule({

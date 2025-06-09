@@ -31,26 +31,6 @@
   .text-center {
     text-align: center !important;
   }
+ 
 
 }
-
-.section-title {
-  font-weight: bold;
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  color: #003366;
-}
-
-.section-box {
-  border: 1px solid #007bff;
-  background-color: #f0f8ff;
-  border-radius: 4px;
-  padding: 15px;
-  margin-bottom: 20px;
-}
-
-::ng-deep .modal-dialog.main_add_popup {
-  max-width: 1000px; 
-}
-

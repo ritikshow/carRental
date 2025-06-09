@@ -48,10 +48,28 @@ export class ApiService {
     return this.http.post(`${BASE_URL}/Car`,obj)
   }
 
+  //Booking_Type ================================================
+  CreateBookingType(obj:any):Observable<any>{
+    return this.http.post(`${BASE_URL}/BookingType`,obj)
+  }
+   GetBookingType(): Observable<any> {
+    return this.http.get(`${BASE_URL}/BookingType`);
+  }
+
+  DeleteById(id:number):Observable<any>{
+    return this.http.delete(`${BASE_URL}/BookingType/${id}`)
+  }
+
+
+
+
+
 // Booking Api ====================================
 
 CreateBooking(obj:any):Observable<any>{
   return this.http.post(`${BASE_URL}/Booking`,obj)
 }
-  
+GetAllBooking():Observable<any>{
+  return this.http.get(`${BASE_URL}/Booking`)
+}
 }

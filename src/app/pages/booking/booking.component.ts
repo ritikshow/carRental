@@ -99,7 +99,7 @@ export class BookingComponent implements OnInit {
       this.api.CreateBooking(formData).subscribe({next:(res:any)=>{
         console.log("Booking:",res)
           this.bookingForm.reset();
-      }})
+      }});
       // send to API
     }
   }

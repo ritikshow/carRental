@@ -15,10 +15,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { DriverEditAddComponent } from './driver/driver-edit-add/driver-edit-add.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MasterBookingTypeComponent } from './master-booking-type/master-booking-type.component';
 
 
 
@@ -29,7 +30,8 @@ import { MatSortModule } from '@angular/material/sort';
     BookingComponent,
     DriverComponent,
     ContactComponent,
-    DriverEditAddComponent 
+    DriverEditAddComponent,
+    MasterBookingTypeComponent 
 
   ],
   imports: [
@@ -44,7 +46,7 @@ import { MatSortModule } from '@angular/material/sort';
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,FormsModule  
     
   
   ]
