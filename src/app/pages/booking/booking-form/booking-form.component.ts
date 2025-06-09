@@ -10,8 +10,10 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class BookingFormComponent implements OnInit {
   bookingForm!: FormGroup;
-  carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
-  bookingTypes = ['One Way', 'Round Trip'];
+  AllCars:any
+  Bookingtype:any
+  // carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
+  // bookingTypes = ['One Way', 'Round Trip'];
   isCompanyEnabled = false;
    
   constructor(private fb: FormBuilder,
@@ -95,5 +97,22 @@ export class BookingFormComponent implements OnInit {
   }
    closeModal() {
     this.activeModal.close();
+  }
+
+   Getcar(){
+    debugger;
+      this.api.GetCars().subscribe({next: (res:any) => {
+        console.log('Carstype:', res);
+        this.AllCars=res.data;
+      }
+    });
+  }
+
+  GetBookingType(){
+     this.api.GetBookingType().subscribe({next: (res:any) => {
+        console.log('Carstype:', res);
+        this.Bookingtype=res.data;
+      }
+    });
   }
 }

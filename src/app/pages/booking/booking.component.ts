@@ -26,8 +26,9 @@ import { ApiService } from 'src/app/services/api.service';
 export class BookingComponent implements OnInit {
   bookingForm!: FormGroup;
   AllCars:any
-  bookingTypes = ['One Way', 'Round Trip'];
-  carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
+  Bookingtype:any
+  //bookingTypes = ['One Way', 'Round Trip'];
+  //carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
 
   constructor(
     private fb: FormBuilder,
@@ -110,12 +111,16 @@ export class BookingComponent implements OnInit {
     debugger;
       this.api.GetCars().subscribe({next: (res:any) => {
         console.log('Carstype:', res);
-          
         this.AllCars=res.data;
-
-       
       }
-      
+    });
+  }
+
+  GetBookingType(){
+     this.api.GetBookingType().subscribe({next: (res:any) => {
+        console.log('Carstype:', res);
+        this.Bookingtype=res.data;
+      }
     });
   }
 }
