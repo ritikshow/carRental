@@ -27,15 +27,21 @@ export class ApiService {
   }
   DeleteDriverbyId(id: number): Observable<any> {
   return this.http.delete(`${BASE_URL}/Driver/${id}`);
-}
+   }
    EditdriverById(id:number,obj:any):Observable<any>{
    return this.http.put(`${BASE_URL}/Driver/${id}`,obj);
- }
+   }
  
 // Contact API=================================================
 
   CreateContact(obj:any): Observable<any>{
     return this.http.post(`${BASE_URL}/Contanct`,obj)
+   }
+  GetAllContact():Observable<any>{
+    return this.http.get(`${BASE_URL}/Contanct`);
+  }
+  contactDeleteById(id:number):Observable<any>{
+    return this.http.delete(`${BASE_URL}/Contanct/${id}`)
   }
 
 
@@ -72,4 +78,7 @@ CreateBooking(obj:any):Observable<any>{
 GetAllBooking():Observable<any>{
   return this.http.get(`${BASE_URL}/Booking`)
 }
+ BookingDeleteById(id:number):Observable<any>{
+    return this.http.delete(`${BASE_URL}/Booking/${id}`)
+  }
 }

@@ -48,13 +48,13 @@ export class BookingComponent implements OnInit {
   }
 
   deleteItem(item: any) {
-    if (confirm(`Are you sure to delete "${item.name}"?`)) {
-      this.Booking = this.Booking.filter(x => x !== item);
-    }
+     this.api.BookingDeleteById(item.bookingId).subscribe({next:(res:any)=>{
+          
+      this.GetAllBooking()
+       }})
   }
   
   GetAllBooking(){
-
     this.api.GetAllBooking().subscribe({next:(res:any)=>{
          this.Booking=res.data;
     }})

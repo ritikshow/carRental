@@ -49,6 +49,11 @@
   padding: 15px;
   margin-bottom: 20px;
 }
+.section-box .row div {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 
 ::ng-deep .modal-dialog.main_add_popup {
   max-width: 1000px; 
