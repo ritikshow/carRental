@@ -12,8 +12,6 @@ export class BookingFormComponent implements OnInit {
   bookingForm!: FormGroup;
   AllCars:any
   Bookingtype:any
-  // carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
-  // bookingTypes = ['One Way', 'Round Trip'];
   isCompanyEnabled = false;
    
   constructor(private fb: FormBuilder,
