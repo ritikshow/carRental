@@ -10,7 +10,7 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class FleetComponent implements OnInit {
   AllCars: any[] = [];
-  path: string = 'https://localhost:7055/api';
+  path: string = 'https://rirajtik-001-site1.ktempurl.com/api';
   BaseUrl: string = '';
 
   constructor(
