@@ -28,7 +28,7 @@ export class ApiService {
   DeleteDriverbyId(id: number): Observable<any> {
   return this.http.delete(`${BASE_URL}/Driver/${id}`);
    }
-   EditdriverById(id:number,obj:any):Observable<any>{
+  EditdriverById(id:number,obj:any):Observable<any>{
    return this.http.put(`${BASE_URL}/Driver/${id}`,obj);
    }
  
@@ -54,6 +54,11 @@ export class ApiService {
     return this.http.post(`${BASE_URL}/Car`,obj)
   }
 
+  carDeleteById(id:number):Observable<any>{
+    return this.http.delete(`${BASE_URL}/Car/${id}`)
+  }
+
+
   //Booking_Type ================================================
   CreateBookingType(obj:any):Observable<any>{
     return this.http.post(`${BASE_URL}/BookingType`,obj)
@@ -78,7 +83,7 @@ CreateBooking(obj:any):Observable<any>{
 GetAllBooking():Observable<any>{
   return this.http.get(`${BASE_URL}/Booking`)
 }
- BookingDeleteById(id:number):Observable<any>{
-    return this.http.delete(`${BASE_URL}/Booking/${id}`)
-  }
+BookingDeleteById(id:number):Observable<any>{
+  return this.http.delete(`${BASE_URL}/Booking/${id}`)
+}
 }

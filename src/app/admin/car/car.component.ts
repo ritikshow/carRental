@@ -89,7 +89,7 @@ export class CarComponent implements OnInit {
         this.ViewData = null;
       }
 
- console.log(this.ViewData)
+ 
  this.modalService.open(content,{ backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true, })
  }
 
@@ -98,14 +98,16 @@ export class CarComponent implements OnInit {
 
  }
 
-   editItem(item: any) {
+editItem(item: any) {
     console.log('Edit', item);
   }
 
   deleteItem(item: any) {
-        
-  }
 
+        this.api.carDeleteById(item.carId).subscribe({next:(res:any)=>{
+          this.Getcar();
+        }})
+  }
   get filteredData() {
   const term = this.searchTerm.toLowerCase();
   return this.AllCars.filter(item =>
@@ -117,7 +119,6 @@ export class CarComponent implements OnInit {
 
 
   get paginatedData() {
-    
     const start = (this.currentPage - 1) * this.pageSize;
     return this.filteredData.slice(start, start + this.pageSize);
   }
@@ -129,9 +130,6 @@ export class CarComponent implements OnInit {
   nextPage() {
     if ((this.currentPage * this.pageSize) < this.filteredData.length) this.currentPage++;
   }
-
-
-
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.carForm.invalid) return;
@@ -147,7 +145,7 @@ export class CarComponent implements OnInit {
     this.api.CreateCar(formData).subscribe({
       next: (res: any) => {
         alert('Car added successfully!');
-        this.modalService.dismissAll(); // close modal on success
+        this.modalService.dismissAll(); 
         this.carForm.reset();
         this.isSubmitted = false;
         this.previewUrl = null;
@@ -164,7 +162,7 @@ export class CarComponent implements OnInit {
   
       this.api.GetCars().subscribe({next: (res:any) => {
         console.log('Carstype:', res);
-        debugger
+       
         this.AllCars= res.data || [];
        console.log("Data",this.AllCars)
       }
