@@ -15,7 +15,11 @@ export class CarComponent implements OnInit {
   pageSize = 5;
  AllCars: any[] = [];
   carForm!: FormGroup;
+  ViewData:any;
   isSubmitted = false;
+  path: string = 'https://rirajtik-001-site1.ktempurl.com/api';
+  BaseUrl: string = '';
+
   selectedFile: File | null = null;
   previewUrl: string | ArrayBuffer | null = null;
 
@@ -27,6 +31,7 @@ export class CarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.BaseUrl = this.path.replace(/^(.*:\/\/[^\/]+)\/.*/, '$1');
     this.Getcar();
     this.carForm = this.fb.group({
       carName: ['', Validators.required],
@@ -67,6 +72,31 @@ export class CarComponent implements OnInit {
     }
   }
 
+ ViewItem(item:any,content:any){
+  const car = item;
+
+      if (car) {
+        if (car.imagePath && car.imagePath !== 'null') {
+          const match = car.imagePath.match(/Uploads[\\/].*/);
+          const relativePath = match ? match[0].replace(/\\/g, '/') : '';
+          car.imagePath = `${this.BaseUrl}/${relativePath}`;
+        } else {
+          car.imagePath = 'assets/cars/default.jpg'; // fallback image
+        }
+
+        this.ViewData = car; // You can use this.Car instead of this.AllCars if it's just one
+      } else {
+        this.ViewData = null;
+      }
+
+ console.log(this.ViewData)
+ this.modalService.open(content,{ backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true, })
+ }
+
+ closeModal(){
+  this.modalService.dismissAll();
+
+ }
 
    editItem(item: any) {
     console.log('Edit', item);
@@ -87,7 +117,7 @@ export class CarComponent implements OnInit {
 
 
   get paginatedData() {
-    debugger;
+    
     const start = (this.currentPage - 1) * this.pageSize;
     return this.filteredData.slice(start, start + this.pageSize);
   }

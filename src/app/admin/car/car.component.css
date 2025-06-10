@@ -32,3 +32,11 @@
     text-align: center !important;
   }
 }
+
+.bg-light-blue {
+  background-color: #f0f8ff; /* Light blue shade */
+}
+.text-wrap-break {
+  word-break: break-word;
+}
+
