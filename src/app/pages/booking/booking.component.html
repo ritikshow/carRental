@@ -11,7 +11,7 @@
           <select formControlName="cartype">
             <option value="">Select</option>
             <option *ngFor="let item of AllCars" [value]="item.carName">
-              {{ item.carName }}
+              {{ item.carModel }}
             </option>
           </select>
         </div>
