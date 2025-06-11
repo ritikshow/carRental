@@ -43,7 +43,7 @@
           <div class="card h-100 car-card text-center animate-hover">
             <img *ngIf="car.imagePath" [src]="car.imagePath" class="card-img-top p-3" alt="{{ car.carName }}">
             <div class="card-body">
-              <h5 class="card-title">{{ car.carName }}</h5>
+              <h5 class="card-title">{{ car.carModel }}</h5>
               <button class="btn btn-warning mt-2" (click)="OnSubmit()">Book Now</button>
             </div>
           </div>
