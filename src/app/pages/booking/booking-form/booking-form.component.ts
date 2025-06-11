@@ -11,7 +11,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class BookingFormComponent implements OnInit {
   bookingForm!: FormGroup;
   AllCars:any
-  Bookingtype:any
+  Bookingtypes:any
   isCompanyEnabled = false;
    
   constructor(private fb: FormBuilder,
@@ -112,7 +112,7 @@ export class BookingFormComponent implements OnInit {
   GetBookingType(){
      this.api.GetBookingType().subscribe({next: (res:any) => {
         console.log('Carstype:', res);
-        this.Bookingtype=res.data;
+        this.Bookingtypes=res.data;
       }
     });
   }

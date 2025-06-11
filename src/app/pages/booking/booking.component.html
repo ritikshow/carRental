@@ -19,8 +19,8 @@
           <label>Booking Type</label>
           <select formControlName="BookingType">
             <option value="">Select</option>
-            <option *ngFor="let type of Bookingtype" [value]="type">
-              {{ type }}
+            <option *ngFor="let type of Bookingtypes" [value]="type">
+              {{ type.type }}
             </option>
           </select>
         </div>

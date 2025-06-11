@@ -26,7 +26,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class BookingComponent implements OnInit {
   bookingForm!: FormGroup;
   AllCars:any
-  Bookingtype:any
+  Bookingtypes:any
   //bookingTypes = ['One Way', 'Round Trip'];
   //carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
 
@@ -71,8 +71,9 @@ export class BookingComponent implements OnInit {
       descControl?.updateValueAndValidity();
     });
 
+     this.BookingType()
      this.Getcar();
-     this.GetBookingType
+    
     
   }
 
@@ -117,10 +118,11 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  GetBookingType(){
+  BookingType(){
+
      this.api.GetBookingType().subscribe({next: (res:any) => {
         console.log('Carstype:', res);
-        this.Bookingtype=res.data;
+        this.Bookingtypes=res.data;
       }
     });
   }
