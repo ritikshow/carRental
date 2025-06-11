@@ -72,6 +72,7 @@ export class BookingComponent implements OnInit {
     });
 
      this.Getcar();
+     this.GetBookingType
     
   }
 

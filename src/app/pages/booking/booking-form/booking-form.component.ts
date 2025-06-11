@@ -20,6 +20,9 @@ export class BookingFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    this.Getcar();
+    this.GetBookingType();
     this.bookingForm = this.fb.group({
       carType: [''],
       bookingType: [''],
