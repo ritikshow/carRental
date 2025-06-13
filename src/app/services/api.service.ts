@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
-//const BASE_URL = 'https://localhost:7055/api';
+//const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
+const BASE_URL = 'https://localhost:7055/api';
 //https://localhost:7055/api/Authentication
 
 @Injectable({
@@ -70,6 +70,10 @@ export class ApiService {
   DeleteById(id:number):Observable<any>{
     return this.http.delete(`${BASE_URL}/BookingType/${id}`)
   }
+  UpdateBookingType(id: number, data: any) {
+  return this.http.put(`${BASE_URL}/BookingType/${id}`, data);
+}
+
 
 
 
@@ -85,5 +89,9 @@ GetAllBooking():Observable<any>{
 }
 BookingDeleteById(id:number):Observable<any>{
   return this.http.delete(`${BASE_URL}/Booking/${id}`)
+}
+
+UpdateBookingById(id:number,obj:any):Observable<any>{
+  return this.http.put(`${BASE_URL}/Booking/${id}`,obj)
 }
 }

@@ -1,1 +1,81 @@
-hello
+<div class="top-section">
+     <div class="widget-container">
+  <div class="widget green">
+    <div class="icon">
+      <fa-icon [icon]="faLocation"></fa-icon>
+    </div>
+    <div class="value">
+      <div class="top">32</div>
+      <div class="bottom">Locations</div>
+    </div>
+  </div>
+  <div class="widget yellow">
+    <div class="icon">
+      <fa-icon [icon]="faShop"></fa-icon>
+    </div>
+    <div class="value">
+      <div class="top">295</div>
+      <div class="bottom">Shops</div>
+    </div>
+  </div>
+  <div class="widget red">
+    <div class="icon">
+      <fa-icon [icon]="faBoxes"></fa-icon>
+    </div>
+    <div class="value">
+      <div class="top">45784</div>
+      <div class="bottom">Products Sold</div>
+    </div>
+  </div>
+  <div class="widget blue">
+    <div class="icon">
+      <fa-icon [icon]="faMoneyBill"></fa-icon>
+    </div>
+    <div class="value">
+      <div class="top">346928</div>
+      <div class="bottom">Total Revenue</div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="middle-section">
+  <div class="widget left">
+      <div class="chart-container" [chart]="chart"></div>
+  </div>
+  <div class="widget right">
+   <div class="chart-container" [chart]="charts"></div>
+  </div>
+</div>
+<div class="bottom-section">
+  <div class="widget left">
+     <div class="transactions">
+  <div class="title">Last few transactions</div>
+  <div class="transaction-wrapper">
+    <div class="transaction" *ngFor="let transaction of transactions">
+      <div class="image">
+        <img [src]="transaction.imgSrc" alt="" />
+      </div>
+      <div class="title">{{ transaction.title }}</div>
+      <div class="price">{{ transaction.price }}</div>
+      <div class="shop-location">
+        <div class="shop">{{ transaction.shop }}</div>
+        <div class="location">{{ transaction.location }}</div>
+      </div>
+      <div
+        class="status"
+        [ngClass]="{
+          confirmed: transaction.status === 'confirmed',
+          pending: transaction.status === 'pending',
+          shipped: transaction.status === 'shipped'
+        }"
+      >
+        {{ transaction.status }}
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+  <div class="widget right">
+   <div class="chart-container" [chart]="TopThree"></div>
+  </div>
+</div>

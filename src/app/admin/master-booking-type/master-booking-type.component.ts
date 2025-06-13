@@ -14,7 +14,9 @@ export class MasterBookingTypeComponent implements OnInit {
   currentPage = 1;
   pageSize = 12;
   bookingTypeForm!: FormGroup;
-   bookingTypes: any[] = [];
+  bookingTypes: any[] = [];
+  isEditMode = false;
+  editedItemId: number | null = null;
    
   constructor(
     private api: ApiService,
@@ -50,9 +52,26 @@ export class MasterBookingTypeComponent implements OnInit {
     if ((this.currentPage * this.pageSize) < this.filteredData.length) this.currentPage++;
   }
 
-  editItem(item: any) {
-    console.log('Edit', item);
-    // Optionally populate the form here and open modal for editing
+  ViewItem(item:any, content:any){
+
+  }
+
+  editItem(item: any, content:any) {
+    console.log('Editing Item:', item);
+    this.isEditMode = true;
+    this.editedItemId = item.bookingTypeId;
+
+    this.bookingTypeForm.patchValue({
+      type: item.type
+    });
+
+    // Open modal (reusing create modal for edit too)
+    this.modalService.open(content, {
+      backdrop: 'static',
+      windowClass: 'main_add_popup',
+      keyboard: true,
+      centered: true
+    });
   }
 
   deleteBookingType(item: any) {
@@ -63,6 +82,8 @@ export class MasterBookingTypeComponent implements OnInit {
   }
 
   createBookingType(content: TemplateRef<any>) {
+    this.isEditMode = false;
+    this.editedItemId = null;
     this.bookingTypeForm.reset();
     this.modalService.open(content, { backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true });
   }
@@ -75,23 +96,33 @@ export class MasterBookingTypeComponent implements OnInit {
 
 
   onSubmit(): void {
-    debugger
     if (this.bookingTypeForm.valid) {
-      const formDataRaw = this.bookingTypeForm.value;
-      const formData = new FormData();
-      formData.append('type', this.bookingTypeForm.get('type')?.value);
-      console.log('Form Submitted:', formData);
-      this.api.CreateBookingType(formData).subscribe({
-        next: (res: any) => {
-          console.log("Booking:", res)
-          this.bookingTypeForm.reset();
-        }
-      });
-      this.close();
-      this.getallBookingType()
+      const formValue = this.bookingTypeForm.value;
+      console.log('Form Submitted:', formValue);
+
+      if (this.isEditMode && this.editedItemId !== null) {
+        // Call Update API
+        const payload = { type: formValue.type };
+        this.api.UpdateBookingType(this.editedItemId, payload).subscribe({
+          next: (res) => {
+            console.log('Updated:', res);
+            this.getallBookingType();
+            this.close();
+          }
+        });
+      } else {
+        // Create New
+        const formData = new FormData();
+        formData.append('type', formValue.type);
+        this.api.CreateBookingType(formData).subscribe({next: (res: any) => {
+            console.log('Created:', res);
+            this.getallBookingType();
+            this.close();
+          }
+        });
+      }
     }
   }
-
   close(){
     this.modalService.dismissAll();
   }

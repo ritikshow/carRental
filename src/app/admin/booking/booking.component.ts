@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { BookingFormComponent } from 'src/app/pages/booking/booking-form/booking-form.component';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -44,7 +45,9 @@ export class BookingComponent implements OnInit {
   }
 
   editItem(item: any) {
-    console.log('Edit', item);
+      const modalRef =this.modalService.open(BookingFormComponent, { backdrop: 'static', windowClass: 'main_add_popup', keyboard: true, centered: true, })
+      console.log('Edit', item);
+      modalRef.componentInstance.bookingData = item;
   }
 
   deleteItem(item: any) {

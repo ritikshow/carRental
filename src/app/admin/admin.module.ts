@@ -20,6 +20,8 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MasterBookingTypeComponent } from './master-booking-type/master-booking-type.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ChartModule } from 'angular-highcharts';
 
 
 
@@ -46,7 +48,9 @@ import { MasterBookingTypeComponent } from './master-booking-type/master-booking
     ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule,FormsModule  
+    MatSortModule,FormsModule, 
+    FontAwesomeModule,
+    ChartModule 
     
   
   ]

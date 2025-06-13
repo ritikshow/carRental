@@ -21,7 +21,8 @@
           <td>{{ item.type }}</td>
           <td class="text-center p-1">
             <div class="d-flex justify-content-center align-items-center gap-2">
-              <i class="bi bi-pencil-square text-primary" role="button" (click)="editItem(item)"></i>
+              <i class="bi bi-eye text-info" role="button" title="View" (click)="ViewItem(item, bookingType)"></i>
+              <i class="bi bi-pencil-square text-primary" role="button" (click)="editItem(item,bookingTypeFormTemplate)"></i>
               <i class="bi bi-trash text-danger" role="button" (click)="deleteBookingType(item)"></i>
             </div>
           </td>
@@ -42,7 +43,7 @@
 
 <ng-template #bookingTypeFormTemplate>
   <div class="modal-header">
-    <h5 class="modal-title">Add Booking Type</h5>
+    <h5 class="modal-title"> {{ isEditMode ? 'Edit Booking Type' : 'Add Booking Type' }}</h5>
     <button type="button" class="btn-close" aria-label="Close" (click)="close()"></button>
   </div>
 
@@ -57,9 +58,29 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" (click)="close()">Close</button>
-        <button type="submit" class="btn btn-primary" [disabled]="bookingTypeForm.invalid">Save</button>
+        <button type="submit" class="btn btn-primary" [disabled]="bookingTypeForm.invalid"> {{ isEditMode ? 'Update' : 'Save' }}</button>
       </div>
     </form>
   </div>
 
+</ng-template>
+
+
+<ng-template #bookingType let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title text-primary fw-bold">Booking Details</h6>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss()"></button>
+  </div>
+
+  <div class="modal-body">
+    <h6 class="fw-bold mb-3 text-dark">Contact Details</h6>
+    <div class="p-3 border rounded bg-light">
+      <div class="row">
+        <div class="col-4">
+          <strong>Name</strong><br />
+          <span>stactic</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-template>

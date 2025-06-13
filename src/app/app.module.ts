@@ -11,41 +11,33 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './Intercepter/auth.interceptor';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule } from '@angular/material/dialog';
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    AdminLayoutComponent,
-   
-    
-    
+    AdminLayoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule,RouterModule,
+    SharedModule,
+    RouterModule,
     HttpClientModule,
     FormsModule,
-    RouterModule,
-     BrowserAnimationsModule,
-     MatIconModule,
-     MatToolbarModule,
-     MatButtonModule,
-     MatDialogModule,
-     NgbModule,
-     
-     
-     
-
-
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatDialogModule,
+    NgbModule,
+    FontAwesomeModule  // ✅ Should be in imports only
   ],
   providers: [
     {

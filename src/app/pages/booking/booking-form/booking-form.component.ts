@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/services/api.service';
@@ -9,10 +9,13 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./booking-form.component.css']
 })
 export class BookingFormComponent implements OnInit {
+  @Input() bookingData: any; //Reciving the data from adminBooking Componenet
   bookingForm!: FormGroup;
   AllCars:any
   Bookingtypes:any
   isCompanyEnabled = false;
+   isEditMode = false;
+  editedItemId: number | null = null;
    
   constructor(private fb: FormBuilder,
      private activeModal: NgbActiveModal,
@@ -20,7 +23,7 @@ export class BookingFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
+    
     this.Getcar();
     this.GetBookingType();
     this.bookingForm = this.fb.group({
@@ -39,8 +42,11 @@ export class BookingFormComponent implements OnInit {
       addCompany: [false],
       companyName: [''],
       companyDescription: [''],
-        CompanyEnabled: [false],
+      CompanyEnabled: [false],
     });
+     if (this.bookingData != null) {
+    this.editBooking();
+  }
 
     // Disable company fields by default
     this.bookingForm.get('companyName')?.disable();
@@ -65,6 +71,36 @@ export class BookingFormComponent implements OnInit {
       companyDescCtrl?.disable();
     }
   }
+
+
+  editBooking() {
+  this.isEditMode = true;
+  this.editedItemId = this.bookingData.bookingId;
+
+  this.bookingForm.patchValue({
+
+    
+    carType: this.bookingData.cartype,           
+    bookingType: this.bookingData.bookingType,  
+    phone: this.bookingData.phone_no,
+
+    name: this.bookingData.name,
+    email: this.bookingData.email,
+    pickupLocation: this.bookingData.pickupLocation,
+    pickupDate: this.bookingData.pickupDate,
+    pickupTime: this.bookingData.pickupTime .split("T")[1],
+    dropLocation: this.bookingData.dropLocation,
+    dropDate: this.bookingData.dropdate,
+    dropTime: this.bookingData.droptime.split("T")[1],
+    bookingDate: this.bookingData.bookingDate,
+    addCompany: this.bookingData.addCompany,
+    companyName: this.bookingData.companyName,
+    companyDescription: this.bookingData.companyDescription,
+    CompanyEnabled: this.bookingData.CompanyEnabled,
+  });
+  console.log("Data",this.bookingForm.value)
+}
+
 
   onSubmit(): void {
     debugger;
