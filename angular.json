@@ -32,7 +32,14 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+            ],
+            "allowedCommonJsDependencies": [
+              "highcharts",
+              "highcharts/highmaps",
+              "highcharts/highstock",
+              "highcharts/highcharts-gantt"
+              ]
+
           },
           "configurations": {
             "production": {
@@ -44,8 +51,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "4kb",
+                  "maximumError": "5kb"
                 }
               ],
               "outputHashing": "all"
