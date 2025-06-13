@@ -1,62 +1,82 @@
-<mat-toolbar color="primary">
-  <span>Driver Page</span>
-  <span class="example-spacer"></span>
-  <button mat-raised-button color="accent" (click)="OpenAddEditEmpForm()">Add Driver</button>
-</mat-toolbar>
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <input type="text" class="form-control w-25" placeholder="Search..." [(ngModel)]="searchTerm" />
+    <button class="btn btn-primary" (click)="OpenDriver(driverFormTemplate)">
+      <i class="bi bi-plus"></i> Add Driver
+    </button>
+  </div>
 
-<div class="main-body">
-  <mat-form-field appearance="outline">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input />
-  </mat-form-field>
 
-  <div class="table-container">
-    <table mat-table [dataSource]="dataSource" matSort>
-
-      <!-- ID Column -->
-      <ng-container matColumnDef="driverID">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
-        <td mat-cell *matCellDef="let row">{{ row.driverID }}</td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
-      </ng-container>
-
-      <!-- Phone Column -->
-      <ng-container matColumnDef="phone">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
-        <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
-      </ng-container>
-
-      <!-- Gmail Column -->
-      <ng-container matColumnDef="gmail">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
-        <td mat-cell *matCellDef="let row">{{ row.gmail }}</td>
-      </ng-container>
-
-      <!-- Action Column -->
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
-        <td mat-cell *matCellDef="let row">
-          <button mat-icon-button color="primary" (click)="OpeneditformEmpForm(row)">
-            <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button color="warn" (click)="DeleteDriverbyid(row.driverID)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="5">No data matching the filter "{{ input.value }}"</td>
-      </tr>
+  <div class="table-responsive">
+    <table class="table table-bordered align-middle">
+      <thead class="table-light text-center">
+        <tr>
+          <th>Driver ID</th>
+          <th>Name</th>
+          <th>Gmail</th>
+          <th>Phone_No</th>
+          <th style="width: 100px;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of paginatedData">
+          <td>{{ item.driverID}}</td>
+          <td>{{item.name}}</td>
+          <td>{{item.gmail}}</td>
+          <td>{{item.phone}}</td>
+          <td class="text-center p-1">
+            <div class="d-flex justify-content-center align-items-center gap-2">
+              <i class="bi bi-eye text-info" role="button" title="View"></i>
+              <i class="bi bi-pencil-square text-primary" role="button" (click)="editItem(item,driverFormTemplate)"></i>
+              <i class="bi bi-trash text-danger" role="button" (click)="deleteItem(item)"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button class="btn btn-outline-secondary btn-sm" [disabled]="currentPage === 1" (click)="previousPage()">Previous</button>
+    <span>Page {{ currentPage }}</span>
+    <button class="btn btn-outline-secondary btn-sm" [disabled]="currentPage * pageSize >= filteredData.length" (click)="nextPage()">Next</button>
   </div>
 </div>
+
+ 
+<!-- Driver form -->
+ <ng-template #driverFormTemplate let-data>
+  <div class="form-container">
+    <h2>Driver Form</h2>
+    <form [formGroup]="driverForm" (ngSubmit)="onSubmitDialog()">
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Name*</label>
+          <input type="text" formControlName="name" placeholder="Enter your name" />
+        </div>
+        <div class="form-field">
+          <label>Email*</label>
+          <input type="email" formControlName="gmail" placeholder="Enter your email" />
+        </div>
+        <div class="form-field">
+          <label>Phone no*</label>
+          <input type="text" formControlName="phone" placeholder="Enter phone number" />
+        </div>
+        <div class="form-field">
+          <label>Age*</label>
+          <input type="number" formControlName="age" placeholder="Enter age" />
+        </div>
+        <div class="form-field full-width">
+          <label>Address</label>
+          <textarea rows="2" formControlName="address" placeholder="Address"></textarea>
+        </div>
+      </div>
+      <div class="button-row">
+        <button type="button" class="btn cancel" (click)="close()" >Cancel</button>
+        <button type="submit" class="btn save">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+

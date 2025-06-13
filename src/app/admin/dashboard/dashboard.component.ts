@@ -84,15 +84,15 @@ export class DashboardComponent implements OnInit {
       height: 325
     },
     title: {
-      text: 'Category wise sales'
+      text: 'Booking type '
     },
     xAxis: {
       categories: [
-        'Electronics',
-        'Groceries',
-        'Cosmetics',
-        'Clothes',
-        'Appliances',
+        'Drop',
+        'Station',
+        'One day',
+        'Pickup',
+        'Office',
       ]
     },
     yAxis: {
@@ -105,27 +105,27 @@ export class DashboardComponent implements OnInit {
       type: 'pie',
       data: [
         {
-          name: 'Electronics',
+          name: 'Drop',
           y: 41.0,
           color: '#044342',
         },
         {
-          name: 'Groceries',
+          name: 'Station',
           y: 33.8,
           color: '#7e0505',
         },
         {
-          name: 'Cosmetics',
+          name: 'One day',
           y: 6.5,
           color: '#ed9e20',
         },
         {
-          name: 'Clothes',
+          name: 'Pickup',
           y: 15.2,
           color: '#6920fb',
         },
         {
-          name: 'Appliances',
+          name: 'Office',
           y: 3.5,
           color: '#121212',
         },

@@ -2,8 +2,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-//const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
-const BASE_URL = 'https://localhost:7055/api';
+const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
+//const BASE_URL = 'https://localhost:7055/api';
 //https://localhost:7055/api/Authentication
 
 @Injectable({

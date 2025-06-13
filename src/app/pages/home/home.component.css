@@ -85,4 +85,35 @@
     padding: 12px 25px;
     font-size: 1rem;
   }
+
+
+  @keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content h1,
+.hero-content p,
+.hero-button {
+  opacity: 0;
+  animation: fadeSlideUp 1s ease-out forwards;
+}
+
+/* Optional: Add delay for staggered animation */
+.hero-content h1 {
+  animation-delay: 0.2s;
+}
+.hero-content p {
+  animation-delay: 0.5s;
+}
+.hero-button {
+  animation-delay: 0.8s;
+}
+
 }

@@ -73,4 +73,8 @@ export class BookingComponent implements OnInit {
   createBookingType() {
     console.log('Open Create Booking Modal');
   }
+
+  close(){
+    this.modalService.dismissAll();
+  }
 }
