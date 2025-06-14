@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { faLocation, faShop, faBoxes, faMoneyBill } from '@fortawesome/free-solid-svg-icons';
+import { faLocation, faShop, faBoxes, faMoneyBill, faCar } from '@fortawesome/free-solid-svg-icons';
 import { Chart } from 'angular-highcharts';
 
 
@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   faShop = faShop;
   faBoxes = faBoxes;
   faMoneyBill = faMoneyBill;
+  faCar = faCar;
 
   
   chart = new Chart({
