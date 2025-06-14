@@ -2,37 +2,46 @@
      <div class="widget-container">
   <div class="widget green">
     <div class="icon">
-      <fa-icon [icon]="faCar"></fa-icon>
+      <img src="assets/Dashborad/booking.png" alt="Booking" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">32</div>
+      <div class="top">{{AllCount?.total_Booking}}</div>
       <div class="bottom">Total Booking</div>
     </div>
   </div>
   <div class="widget yellow">
     <div class="icon">
-      <img src="/assets/Dashborad/car.png" alt="Booking" class="img-icon">
+      <img src="assets/Dashborad/car.png" alt="car" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">295</div>
+      <div class="top">{{AllCount?.total_Car}}</div>
       <div class="bottom">Total Car</div>
     </div>
   </div>
   <div class="widget red">
     <div class="icon">
-      <img src="/assets/Dashborad/people.png" alt="Booking" class="img-icon">
+      <img src="assets/Dashborad/people.png" alt="Driver" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">45784</div>
+      <div class="top">{{AllCount?.total_Driver}}</div>
       <div class="bottom">Total Driver</div>
     </div>
   </div>
-  <div class="widget blue">
+  <div class="widget green">
+    <div class="icon">
+     <img src="assets/Dashborad/contact-book.png" alt="Driver" class="img-icon">
+    </div>
+    <div class="value">
+      <div class="top">{{AllCount?.total_contacts}}</div>
+      <div class="bottom">Total Contact</div>
+    </div>
+  </div>
+    <div class="widget blue">
     <div class="icon">
       <fa-icon [icon]="faMoneyBill"></fa-icon>
     </div>
     <div class="value">
-      <div class="top">346928</div>
+      <div class="top">00</div>
       <div class="bottom">Total Revenue</div>
     </div>
   </div>

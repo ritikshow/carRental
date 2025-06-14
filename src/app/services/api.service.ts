@@ -94,4 +94,10 @@ BookingDeleteById(id:number):Observable<any>{
 UpdateBookingById(id:number,obj:any):Observable<any>{
   return this.http.put(`${BASE_URL}/Booking/${id}`,obj)
 }
+//Dashboard count
+
+
+   GetAllCount():Observable<any>{
+     return this.http.get(`${BASE_URL}/Dashboard/total-count`)
+   }
 }

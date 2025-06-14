@@ -136,8 +136,8 @@
   align-items: space-between;
 }
 .widget-container .widget {
-  width: 325px;
-  height: 175px;
+  width: 250px;
+  height: 150px;
   background-color: #fff;
   color: #fff;
   border-radius: 5px;
