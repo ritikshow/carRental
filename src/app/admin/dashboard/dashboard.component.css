@@ -9,7 +9,7 @@
     width: 1080px;
   }
   @media only screen and (max-width: 1200px) {
-    width: 980px;
+    width: 950px;
   }
 }
 .middle-section {
@@ -115,13 +115,13 @@
       background-color: rgb(105, 32, 251);
     }
     @media only screen and (max-width: 1600px) {
-      width: 250px;
+      width: 245px;
     }
     @media only screen and (max-width: 1500px) {
-      width: 225px;
+      width: 205px;
     }
     @media only screen and (max-width: 1400px) {
-      width: 200px;
+      width: 175px;
     }
     @media only screen and (max-width: 1200px) {
       width: 175px;
@@ -137,7 +137,7 @@
     }
     .value {
       text-align: center;
-      width: 175px;
+      width: 150px;
       .top {
         font-size: 30px;
         @media only screen and (max-width: 1200px) {
@@ -153,4 +153,12 @@
       }
     }
   }
+}
+
+.img-icon {
+  width: 115px;
+  height: 115px;
+}
+.chart-container {
+  padding: 20px;
 }

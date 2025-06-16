@@ -2,46 +2,46 @@
  <div class="widget-container">
   <div class="widget green">
     <div class="icon">
-      <fa-icon [icon]="faLocation"></fa-icon>
+      <img src="assets/Dashborad/booking.png" alt="Booking" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">32</div>
-      <div class="bottom">Locations</div>
+      <div class="top">{{AllCount.total_Booking}}</div>
+      <div class="bottom">Total Booking</div>
     </div>
   </div>
   <div class="widget yellow">
     <div class="icon">
-      <fa-icon [icon]="faShop"></fa-icon>
+      <img src="assets/Dashborad/car.png" alt="Car" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">295</div>
-      <div class="bottom">Shops</div>
+      <div class="top">{{AllCount.total_Car}}</div>
+      <div class="bottom">Total Car</div>
     </div>
   </div>
   <div class="widget red">
     <div class="icon">
-      <fa-icon [icon]="faBoxes"></fa-icon>
+      <img src="assets/Dashborad/people.png" alt="Driver" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">45784</div>
-      <div class="bottom">Products Sold</div>
+      <div class="top">{{AllCount.total_Driver}}</div>
+      <div class="bottom">Total Driver</div>
     </div>
   </div>
   <div class="widget blue">
     <div class="icon">
-      <fa-icon [icon]="faMoneyBill"></fa-icon>
+      <img src="assets/Dashborad/contact-book.png" alt="Driver" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">346928</div>
-      <div class="bottom">Total Revenue</div>
+      <div class="top">{{AllCount.total_contacts}}</div>
+      <div class="bottom">Total Contact</div>
     </div>
   </div>
   <div class="widget blue">
     <div class="icon">
-      <fa-icon [icon]="faMoneyBill"></fa-icon>
+       <img src="assets/Dashborad/money.png" alt="Driver" class="img-icon">
     </div>
     <div class="value">
-      <div class="top">346928</div>
+      <div class="top">000</div>
       <div class="bottom">Total Revenue</div>
     </div>
   </div>
@@ -53,6 +53,8 @@
   </div>
   <div class="widget right">
    
+<div class="chart-container" [chart]="chart"></div>
+
   </div>
 </div>
 <div class="bottom-section">
@@ -63,3 +65,4 @@
     
   </div>
 </div>
+
