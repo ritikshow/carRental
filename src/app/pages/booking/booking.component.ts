@@ -78,6 +78,7 @@ export class BookingComponent implements OnInit {
   }
 
   onSubmit(): void {
+    debugger
     if (this.bookingForm.valid) {
       console.log('Booking Data:', this.bookingForm.value);
        const formDataRaw = this.bookingForm.value;

@@ -15,7 +15,7 @@ export class AutoLogoutService {
         const currentUrl = event.urlAfterRedirects;
         const isAdminRoute = currentUrl.startsWith('/admin');
         const isLoginPage = currentUrl === '/login';
-        const hasToken = !!localStorage.getItem('jwtToken');
+        const hasToken = !!sessionStorage.getItem('jwtToken');
 
         // If on login page or not in admin route, clear timer and remove listeners
         if (isLoginPage) {
@@ -86,12 +86,9 @@ export class AutoLogoutService {
   private logout(): void {
     debugger
     this.clearTimer();
-    localStorage.removeItem('jwtToken');
-
-    // Alert and redirect only if not already on login page
-    //if (this.router.url !== '/login') {
-      alert('You have been logged out due to inactivity.');
+   
+      sessionStorage.clear();
       this.router.navigate(['/login']);
-   // }
+   
   }
 }

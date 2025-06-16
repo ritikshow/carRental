@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit {
     const loginData = { username, password };
     this.api.login(loginData).subscribe({
       next: (response: any) => {
-        localStorage.setItem('jwtToken', response.token);
+        sessionStorage.setItem('jwtToken', response.token);
+        sessionStorage.setItem('Name',username)
         this.router.navigate(['/admin/dashboard']);
       }
     });

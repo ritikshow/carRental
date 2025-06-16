@@ -4,12 +4,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { RouterModule } from '@angular/router';
+import { AdminHeaderComponent } from './admin-header/admin-header.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     FooterComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    AdminHeaderComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,8 @@ import { RouterModule } from '@angular/router';
   exports: [
     NavbarComponent,
     FooterComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    AdminHeaderComponent
   ]
 })
 export class SharedModule { }

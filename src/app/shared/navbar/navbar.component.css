@@ -1,5 +1,9 @@
-/* === Base Styles === */
 .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,21 +54,6 @@
   color: #fff;
 }
 
-.login-link {
-  background-color: #5c6bc0;
-  color: white;
-  font-weight: 600;
-  padding: 8px 16px;
-  border-radius: 25px;
-  transition: background-color 0.3s ease;
-}
-
-.login-link:hover {
-  background-color: #3f51b5;
-  color: white;
-}
-
-/* === Hamburger Menu (Mobile Only) === */
 .hamburger {
   display: none;
   font-size: 26px;
@@ -72,7 +61,6 @@
   cursor: pointer;
 }
 
-/* === Responsive Styles === */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -94,11 +82,5 @@
     padding: 12px 0;
     text-align: center;
     border-bottom: 1px solid #333;
-  }
-
-  .login-link {
-    width: 80%;
-    margin: 10px auto;
-    text-align: center;
   }
 }
