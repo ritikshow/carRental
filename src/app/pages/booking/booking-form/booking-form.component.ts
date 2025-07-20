@@ -10,22 +10,32 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class BookingFormComponent implements OnInit {
   @Input() bookingData: any; //Reciving the data from adminBooking Componenet
+  @Input() carId: number | null = null;
   bookingForm!: FormGroup;
   AllCars:any
   Bookingtypes:any
   isCompanyEnabled = false;
-   isEditMode = false;
+  isEditMode = false;
   editedItemId: number | null = null;
-   
+  showForm = false;
+
   constructor(private fb: FormBuilder,
      private activeModal: NgbActiveModal,
      private api : ApiService
   ) {}
 
   ngOnInit(): void {
-    
-    this.Getcar();
+    let carsLoaded = false;
+    let carDetailLoaded = false;
+
+    this.Getcar(() => {
+      carsLoaded = true;
+      if (!this.carId) this.showForm = true;
+      if (carsLoaded && carDetailLoaded) this.showForm = true;
+    });
+
     this.GetBookingType();
+
     this.bookingForm = this.fb.group({
       carType: [''],
       bookingType: [''],
@@ -44,9 +54,22 @@ export class BookingFormComponent implements OnInit {
       companyDescription: [''],
       CompanyEnabled: [false],
     });
-     if (this.bookingData != null) {
-    this.editBooking();
-  }
+
+    if (this.carId) {
+      this.api.GetcarById(this.carId).subscribe(res => {
+        if (res && res.data && res.data.carModel) {
+          this.bookingForm.patchValue({ carType: res.data.carModel });
+        }
+        carDetailLoaded = true;
+        if (carsLoaded && carDetailLoaded) this.showForm = true;
+      });
+    } else {
+      carDetailLoaded = true;
+    }
+
+    if (this.bookingData != null) {
+      this.editBooking();
+    }
 
     // Disable company fields by default
     this.bookingForm.get('companyName')?.disable();
@@ -136,11 +159,11 @@ export class BookingFormComponent implements OnInit {
     this.activeModal.close();
   }
 
-   Getcar(){
-    debugger;
-      this.api.GetCars().subscribe({next: (res:any) => {
-        console.log('Carstype:', res);
-        this.AllCars=res.data;
+  Getcar(callback?: () => void) {
+    this.api.GetCars().subscribe({
+      next: (res: any) => {
+        this.AllCars = res.data;
+        if (callback) callback();
       }
     });
   }

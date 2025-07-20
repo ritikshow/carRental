@@ -5,7 +5,9 @@
 
   <!-- Main content -->
   <main class="flex-fill">
-    <router-outlet></router-outlet>
+    <div [ngClass]="{'page-content-mt': !isHomePage()}">
+      <router-outlet></router-outlet>
+    </div>
   </main>
 
   <!-- Footer -->

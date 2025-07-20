@@ -43,6 +43,17 @@ export class FleetComponent implements OnInit {
     });
   }
 
+  onBookNow(car: any): void {
+    const carid = car.carId // fallback to car.id if carId is not present
+    const modalRef = this.modalService.open(BookingFormComponent, {
+      backdrop: 'static',
+      windowClass: 'main_add_popup',
+      keyboard: true,
+      centered: true
+    });
+    modalRef.componentInstance.carId = carid;
+  }
+
  Getcar() {
   this.api.GetCars().subscribe({
     next: (res: any) => {

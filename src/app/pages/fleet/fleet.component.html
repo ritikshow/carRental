@@ -44,7 +44,7 @@
             <img *ngIf="car.imagePath" [src]="car.imagePath" class="card-img-top p-3" alt="{{ car.carName }}">
             <div class="card-body">
               <h5 class="card-title">{{ car.carModel }}</h5>
-              <button class="btn btn-warning mt-2" (click)="OnSubmit()">Book Now</button>
+              <button class="btn btn-warning mt-2" (click)="onBookNow(car)">Book Now</button>
             </div>
           </div>
         </div>

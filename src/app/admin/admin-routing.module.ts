@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'booking', component: BookingComponent },
   { path: 'driver', component: DriverComponent },
   { path: 'contact', component: ContactComponent },
-   { path: 'booking_type', component: MasterBookingTypeComponent },
+  { path: 'booking_type', component: MasterBookingTypeComponent },
 ];
 
 @NgModule({
