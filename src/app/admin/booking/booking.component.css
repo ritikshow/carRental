@@ -36,10 +36,11 @@
 
 .section-title {
   font-weight: bold;
-  font-size: 16px;
-  margin-top: 10px;
-  margin-bottom: 5px;
+  font-size: 1.3rem;
+  margin-top: 18px;
+  margin-bottom: 10px;
   color: #003366;
+  text-align: left;
 }
 
 .section-box {
@@ -56,6 +57,20 @@
 
 
 ::ng-deep .modal-dialog.main_add_popup {
-  max-width: 1000px; 
+  max-width: 1200px;
+}
+
+::ng-deep .modal-header {
+  justify-content: center !important;
+  border-bottom: none;
+  padding-bottom: 0.5rem;
+}
+::ng-deep .modal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2rem !important;
+  font-weight: 700;
+  color: #003366;
+  letter-spacing: 1px;
 }
 

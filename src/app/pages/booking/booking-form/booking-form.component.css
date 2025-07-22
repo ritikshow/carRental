@@ -1,6 +1,6 @@
 .booking-form-container {
   max-width: 800px;
-  margin: auto;
+  margin: 40px auto 0 auto;
   padding: 30px;
   background-color: #fff;
   border-radius: 12px;
@@ -8,15 +8,32 @@
   position: relative;
 }
 
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
 .close-btn {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: static;
   background: transparent;
   border: none;
-  font-size: 24px;
-  color: #333;
+  font-size: 28px;
+  color: #222;
   cursor: pointer;
+  transition: color 0.2s;
+  margin-left: 8px;
+}
+.close-btn:hover {
+  color: #d32f2f;
+}
+
+.booking-form-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #18182f;
+  margin: 0;
 }
 
 .form-grid {

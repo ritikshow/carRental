@@ -29,6 +29,25 @@ export class BookingComponent implements OnInit {
   Bookingtypes:any
   //bookingTypes = ['One Way', 'Round Trip'];
   //carTypes = ['SUV', 'Sedan', 'Hatchback', 'Luxury'];
+  feedbacks = [
+    {
+      image: 'assets/cars/audi.png',
+      name: 'Amit Sharma',
+      text: 'Great service! The car was clean and the process was smooth.'
+    },
+    {
+      image: 'assets/cars/bmw1.avif',
+      name: 'Priya Singh',
+      text: 'Very professional drivers and timely pickup. Highly recommended!'
+    },
+    {
+      image: 'assets/cars/jaguar.jpg',
+      name: 'Rahul Verma',
+      text: 'Affordable prices and a wide range of cars to choose from.'
+    }
+  ];
+  currentFeedback = 0;
+  feedbackInterval: any;
 
   constructor(
     private fb: FormBuilder,
@@ -75,6 +94,15 @@ export class BookingComponent implements OnInit {
      this.Getcar();
     
     
+    this.feedbackInterval = setInterval(() => {
+      this.currentFeedback = (this.currentFeedback + 1) % this.feedbacks.length;
+    }, 4000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.feedbackInterval) {
+      clearInterval(this.feedbackInterval);
+    }
   }
 
   onSubmit(): void {

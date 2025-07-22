@@ -1,6 +1,8 @@
 <div class="booking-form-container">
-  <button class="close-btn" (click)="closeModal()">&#10005;</button>
-  <h2>Booking Form</h2>
+  <div class="popup-header">
+    <h2>Booking Form</h2>
+    <button class="close-btn" (click)="closeModal()">&#10005;</button>
+  </div>
   <div *ngIf="!showForm" class="d-flex justify-content-center align-items-center" style="min-height: 200px;">
     <div class="spinner-border text-warning" role="status">
       <span class="visually-hidden">Loading...</span>

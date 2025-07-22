@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingFormComponent } from '../booking/booking-form/booking-form.component';
 import { ApiService } from 'src/app/services/api.service';
@@ -34,14 +34,14 @@ export class FleetComponent implements OnInit {
     return window.innerWidth < 768;
   }
 
-  OnSubmit(): void {
-    this.modalService.open(BookingFormComponent, {
-      backdrop: 'static',
-      windowClass: 'main_add_popup',
-      keyboard: true,
-      centered: true
-    });
-  }
+  // OnSubmit(): void {
+  //   this.modalService.open(BookingFormComponent, {
+  //     backdrop: 'static',
+  //     windowClass: 'main_add_popup',
+  //     keyboard: true,
+  //     centered: true
+  //   });
+  // }
 
   onBookNow(car: any): void {
     const carid = car.carId // fallback to car.id if carId is not present
@@ -74,4 +74,11 @@ export class FleetComponent implements OnInit {
     }
   });
 }
+
+openTariffDetails(car: any, template: TemplateRef<any>): void {
+  this.modalService.open(template, {
+    centered: true,
+    size: 'lg'
+  });
+}   
 }

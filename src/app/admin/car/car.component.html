@@ -25,7 +25,7 @@
           <td class="text-center p-1">
             <div class="d-flex justify-content-center align-items-center gap-2">
               <i class="bi bi-eye text-info" role="button" title="View"(click)="ViewItem(item,CarViewsModal)"></i>
-              <i class="bi bi-pencil-square text-primary" role="button" (click)="editItem(item)"></i>
+              <i class="bi bi-pencil-square text-primary" role="button" (click)="editItem(item, carFormTemplate)"></i>
               <i class="bi bi-trash text-danger" role="button" (click)="deleteItem(item)"></i>
             </div>
           </td>
@@ -50,7 +50,7 @@
 <!-- Modal Template -->
 <ng-template #carFormTemplate let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">Add New Car</h4>
+    <h4 class="modal-title">{{ modalHeading }}</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
 
@@ -81,9 +81,14 @@
 
       <div class="mb-3">
         <label for="imageFile" class="form-label">Upload Car Image</label>
-        <input type="file" id="imageFile" (change)="onFileSelected($event)" class="form-control">
+        <div class="custom-upload-box" (click)="fileInput.click()">
+          <input type="file" #fileInput id="imageFile" (change)="onFileSelected($event)" accept="image/*" hidden>
+          <div class="upload-content">
+            <i class="bi bi-image upload-icon"></i>
+            <div class="upload-text">Upload Logo</div>
+          </div>
+        </div>
       </div>
-
       <div *ngIf="previewUrl" class="mb-3 text-center">
         <p class="text-success">Preview:</p>
         <img [src]="previewUrl" alt="Preview" class="img-thumbnail" width="250">
@@ -91,7 +96,7 @@
 
       <div class="modal-footer d-flex justify-content-between">
         <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
-        <button type="submit" class="btn btn-primary">Add Car</button>
+        <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update Car' : 'Add Car' }}</button>
       </div>
     </form>
   </div>

@@ -1,9 +1,10 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, retry } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-//const BASE_URL = 'https://rirajtik-001-site1.ktempurl.com/api';
-const BASE_URL = 'https://localhost:7055/api';
+const BASE_URL = environment.apiBaseUrl;
+//const BASE_URL = 'https://localhost:7055/api';
 //https://localhost:7055/api/Authentication
 
 @Injectable({
@@ -60,7 +61,10 @@ export class ApiService {
   GetcarById(id:number): Observable<any>{
     return this.http.get(`${BASE_URL}/Car/${id}`)
   }
-
+  
+  UpdateCar(id: number, data: any) {
+    return this.http.put(`${BASE_URL}/Car/${id}`, data);
+  }
 
   //Booking_Type ================================================
   CreateBookingType(obj:any):Observable<any>{

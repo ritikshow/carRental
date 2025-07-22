@@ -1,6 +1,6 @@
 .hero-slider-section {
   position: relative;
-  height: 100vh;
+  height: calc(100vh - 80px);
   overflow: hidden;
 }
 
@@ -117,3 +117,69 @@
 }
 
 }
+
+
+.how-to-book-section {
+  background-color: #fff;
+}
+
+.steps-wrapper {
+  position: relative;
+  padding-top: 50px;
+}
+
+.connector-line {
+  position: absolute;
+  top: 90px;
+  left: 10%;
+  width: 80%;
+  height: 120px;
+  border-top: 4px solid #e6e6f2;
+  border-radius: 100px;
+  z-index: 0;
+}
+
+.booking-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.step {
+  width: 200px;
+  position: relative;
+}
+
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 10px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.bg-light-green {
+  background-color: #e0f5e9;
+}
+.bg-light-blue {
+  background-color: #e2f0fb;
+}
+.bg-light-pink {
+  background-color: #fde8ec;
+}
+.bg-light-yellow {
+  background-color: #fff4d6;
+}
+
+.step-number {
+  font-weight: 700;
+  color: #2d2d6b;
+}
+

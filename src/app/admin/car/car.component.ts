@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/services/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-car',
@@ -12,7 +13,7 @@ import { ApiService } from 'src/app/services/api.service';
 export class CarComponent implements OnInit {
  searchTerm = '';
   currentPage = 1;
-  pageSize = 5;
+  pageSize = environment.pageSize;
  AllCars: any[] = [];
   carForm!: FormGroup;
   ViewData:any;
@@ -22,6 +23,11 @@ export class CarComponent implements OnInit {
 
   selectedFile: File | null = null;
   previewUrl: string | ArrayBuffer | null = null;
+  isEditMode = false;
+  editCarId: number | null = null;
+  modalHeading = 'Add New Car';
+  existingImagePath: string | null = null;
+  // carFormTemplateRef: any; // REMOVE
 
   constructor(
     private modalService: NgbModal,
@@ -48,7 +54,10 @@ export class CarComponent implements OnInit {
     this.isSubmitted = false;
     this.previewUrl = null;
     this.selectedFile = null;
-
+    this.isEditMode = false;
+    this.editCarId = null;
+    this.modalHeading = 'Add New Car';
+    this.existingImagePath = null;
     this.modalService.open(content, {
       ariaLabelledBy: 'modal-basic-title',
       keyboard: false,
@@ -98,9 +107,36 @@ export class CarComponent implements OnInit {
 
  }
 
-editItem(item: any) {
-    console.log('Edit', item);
+editItem(item: any, templateRef: any) {
+  this.isEditMode = true;
+  this.editCarId = item.carId;
+  this.modalHeading = 'Edit Car';
+  this.isSubmitted = false;
+  this.carForm.patchValue({
+    carName: item.carName,
+    carModel: item.carModel,
+    description: item.description || ''
+  });
+  this.selectedFile = null;
+  // Set preview to existing image
+  if (item.imagePath && item.imagePath !== 'null') {
+    const match = item.imagePath.match(/Uploads[\\/].*/);
+    const relativePath = match ? match[0].replace(/\\/g, '/') : '';
+    this.existingImagePath = `${this.BaseUrl}/${relativePath}`;
+    this.previewUrl = this.existingImagePath;
+  } else {
+    this.existingImagePath = null;
+    this.previewUrl = null;
   }
+  // Open modal using provided template reference
+  this.modalService.open(templateRef, {
+    ariaLabelledBy: 'modal-basic-title',
+    keyboard: false,
+    backdrop: 'static',
+    windowClass: 'main_add_popup',
+    centered: true
+  }).result.then(() => {}, () => {});
+}
 
   deleteItem(item: any) {
 
@@ -131,10 +167,12 @@ editItem(item: any) {
     if ((this.currentPage * this.pageSize) < this.filteredData.length) this.currentPage++;
   }
   onSubmit(): void {
-    debugger;
     this.isSubmitted = true;
     if (this.carForm.invalid) return;
-
+    if (this.isEditMode) {
+      this.updateCar();
+      return;
+    }
     const formData = new FormData();
     formData.append('CarName', this.carForm.get('carName')?.value);
     formData.append('CarModel', this.carForm.get('carModel')?.value);
@@ -142,18 +180,49 @@ editItem(item: any) {
     if (this.selectedFile) {
       formData.append('ImageFile', this.selectedFile);
     }
-
     this.api.CreateCar(formData).subscribe({
       next: (res: any) => {
         alert('Car added successfully!');
-        this.modalService.dismissAll(); 
+        this.modalService.dismissAll();
         this.carForm.reset();
         this.isSubmitted = false;
         this.previewUrl = null;
         this.selectedFile = null;
+        this.Getcar();
       },
       error: (err) => {
         alert('Failed to add car. Please try again.');
+        console.error(err);
+      }
+    });
+  }
+
+  updateCar(): void {
+    if (!this.isEditMode || this.editCarId === null) return;
+    const formData = new FormData();
+    formData.append('CarId', this.editCarId.toString());
+    formData.append('CarName', this.carForm.get('carName')?.value);
+    formData.append('CarModel', this.carForm.get('carModel')?.value);
+    formData.append('Description', this.carForm.get('description')?.value || '');
+    if (this.selectedFile) {
+      formData.append('ImageFile', this.selectedFile);
+    } else if (this.existingImagePath) {
+      formData.append('ImagePath', this.existingImagePath);
+    }
+    this.api.UpdateCar(this.editCarId, formData).subscribe({
+      next: (res: any) => {
+        alert('Car updated successfully!');
+        this.modalService.dismissAll();
+        this.carForm.reset();
+        this.isSubmitted = false;
+        this.previewUrl = null;
+        this.selectedFile = null;
+        this.isEditMode = false;
+        this.editCarId = null;
+        this.Getcar();
+      },
+      error: (err) => {
+        alert('Failed to update car. Please try again.');
         console.error(err);
       }
     });

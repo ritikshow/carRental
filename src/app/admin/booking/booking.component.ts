@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingFormComponent } from 'src/app/pages/booking/booking-form/booking-form.component';
 import { ApiService } from 'src/app/services/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-booking',
@@ -12,7 +13,7 @@ export class BookingComponent implements OnInit {
 
   searchTerm = '';
   currentPage = 1;
-  pageSize = 5;
+  pageSize = environment.pageSize;
   Booking :any[]=[]
   viewData:any;
 

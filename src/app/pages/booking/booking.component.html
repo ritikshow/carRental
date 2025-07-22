@@ -1,5 +1,6 @@
-<div class="container">
-  <!-- Left Column: Form -->
+<div class="booking-main-container">
+  <!-- Right Side: Booking Form -->
+  <div class="right-section">
   <div class="form-section" [@slideInUp]>
     <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()" class="form-box">
       <h2>Booking Form</h2>
@@ -110,14 +111,28 @@
 
       <button type="submit" [disabled]="bookingForm.invalid">Submit</button>
     </form>
+    </div>
   </div>
 
-  <!-- Right Column: Info -->
-  <div class="info-section">
+  <!-- Left Side: Feedback Slider + Why Us -->
+  <div class="left-section">
+    <div class="feedback-slider">
+      <div class="feedback-slide" *ngIf="feedbacks.length">
+        <img [src]="feedbacks[currentFeedback].image" alt="Feedback Image" class="feedback-img" />
+        <div class="feedback-text">
+          <p class="feedback-message">"{{ feedbacks[currentFeedback].text }}"</p>
+          <p class="feedback-name">- {{ feedbacks[currentFeedback].name }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-us-section">
     <h2>Why Book With Us?</h2>
-    <p>✔ Wide range of cars (SUVs, Sedans, Luxury)</p>
-    <p>✔ 24/7 Customer Support</p>
-    <p>✔ Easy and quick booking process</p>
-    <p>✔ Reliable pickup and drop services</p>
+      <ul>
+        <li>✔ Wide range of cars (SUVs, Sedans, Luxury)</li>
+        <li>✔ 24/7 Customer Support</li>
+        <li>✔ Easy and quick booking process</li>
+        <li>✔ Reliable pickup and drop services</li>
+      </ul>
+    </div>
   </div>
 </div>

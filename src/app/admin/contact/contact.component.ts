@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/services/api.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -12,7 +13,7 @@ export class ContactComponent implements OnInit {
   
   searchTerm = '';
   currentPage = 1;
-  pageSize = 5;
+  pageSize = environment.pageSize;
   Contact:any[]=[];
   viewData: any;
 
