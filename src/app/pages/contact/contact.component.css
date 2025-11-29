@@ -30,7 +30,7 @@
 .contact-form form {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 10px;
 }
 
 .form-group {

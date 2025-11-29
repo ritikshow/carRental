@@ -117,13 +117,22 @@
   <!-- Left Side: Feedback Slider + Why Us -->
   <div class="left-section">
     <div class="feedback-slider">
-      <div class="feedback-slide" *ngIf="feedbacks.length">
-        <img [src]="feedbacks[currentFeedback].image" alt="Feedback Image" class="feedback-img" />
-        <div class="feedback-text">
-          <p class="feedback-message">"{{ feedbacks[currentFeedback].text }}"</p>
-          <p class="feedback-name">- {{ feedbacks[currentFeedback].name }}</p>
+      <ng-container *ngIf="currentFeedbackData as feedback">
+        <div class="feedback-slide">
+          <ng-container *ngIf="feedback.Photo; else placeholderAvatar">
+            <img [src]="feedback.Photo" alt="Customer photo" class="feedback-img" />
+          </ng-container>
+          <ng-template #placeholderAvatar>
+            <div class="feedback-placeholder">
+              {{ (feedback.Name || 'C').charAt(0) }}
+            </div>
+          </ng-template>
+          <div class="feedback-text">
+            <p class="feedback-message">"{{ feedback.Message }}"</p>
+            <p class="feedback-name">- {{ feedback.Name }}</p>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
     <div class="why-us-section">
     <h2>Why Book With Us?</h2>

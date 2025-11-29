@@ -20,7 +20,59 @@ export class FleetComponent implements OnInit {
 
   ngOnInit(): void {
     this.BaseUrl = this.path.replace(/^(.*:\/\/[^\/]+)\/.*/, '$1');
-    this.Getcar();
+    //this.Getcar();
+    this.AllCars = [
+      {
+        carName: 'innova_crysta',
+        carModel: 'Toyota Innova Crysta',
+        imagePath: 'assets/cars/innova.jpg'
+      },
+      {
+        carName: 'honda_city',
+        carModel: 'Honda City ZX',
+        imagePath: 'assets/cars/Honda city.jpg'
+      },
+      {
+        carName: 'maruti_ertiga',
+        carModel: 'Maruti Suzuki Ertiga',
+        imagePath: 'assets/cars/ertiga2.webp'
+      },
+      {
+        carName: 'mahindra_xuv500',
+        carModel: 'Mahindra XUV500',
+        imagePath: 'assets/cars/download.jpg'
+      },
+      {
+        carName: 'hyundai_verna',
+        carModel: 'Hyundai Verna SX',
+        imagePath: 'assets/cars/dzire.png'
+      },
+      {
+        carName: 'kia_seltos',
+        carModel: 'Kia Seltos GTX',
+        imagePath: 'assets/cars/crystaf.webp'
+      },
+      {
+        carName: 'mg_hector',
+        carModel: 'MG Hector Sharp',
+        imagePath: 'assets/cars/porsche.webp'
+      },
+      {
+        carName: 'toyota_etios',
+        carModel: 'Toyota Etios',
+        imagePath: 'assets/cars/toyotaetios.jpg'
+      },
+      {
+        carName: 'audi_a4',
+        carModel: 'Audi A4',
+        imagePath: 'assets/cars/audi.png'
+      },
+      {
+        carName: 'bmw_5_series',
+        carModel: 'BMW 5 Series',
+        imagePath: 'assets/cars/bmw1.avif'
+      }
+    ];
   }
 
   steps = [
@@ -54,26 +106,26 @@ export class FleetComponent implements OnInit {
     modalRef.componentInstance.carId = carid;
   }
 
- Getcar() {
-  this.api.GetCars().subscribe({
-    next: (res: any) => {
-      this.AllCars = res?.data || [];
+//  Getcar() {
+//   this.api.GetCars().subscribe({
+//     next: (res: any) => {
+//       this.AllCars = res?.data || [];
 
-      this.AllCars.forEach(car => {
-        if (car?.imagePath && car.imagePath !== 'null') {
-          const match = car.imagePath.match(/Uploads[\\/].*/);
-          const relativePath = match ? match[0].replace(/\\/g, '/') : '';
-          car.imagePath = `${this.BaseUrl}/${relativePath}`;
-        } else {
-          car.imagePath = 'assets/cars/default.jpg'; // fallback image
-        }
-      });
-    },
-    error: err => {
-      console.error('Failed to load cars:', err);
-    }
-  });
-}
+//       this.AllCars.forEach(car => {
+//         if (car?.imagePath && car.imagePath !== 'null') {
+//           const match = car.imagePath.match(/Uploads[\\/].*/);
+//           const relativePath = match ? match[0].replace(/\\/g, '/') : '';
+//           car.imagePath = `${this.BaseUrl}/${relativePath}`;
+//         } else {
+//           car.imagePath = 'assets/cars/default.jpg'; // fallback image
+//         }
+//       });
+//     },
+//     error: err => {
+//       console.error('Failed to load cars:', err);
+//     }
+//   });
+// }
 
 openTariffDetails(car: any, template: TemplateRef<any>): void {
   this.modalService.open(template, {
