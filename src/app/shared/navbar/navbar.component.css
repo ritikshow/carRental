@@ -55,6 +55,13 @@
   color: #fff;
 }
 
+/* Active link styling when the router marks a link active */
+.nav-link.active {
+  background-color: #334078;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(51, 64, 120, 0.18);
+}
+
 .hamburger {
   display: none;
   font-size: 26px;

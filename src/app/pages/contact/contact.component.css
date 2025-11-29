@@ -1,40 +1,88 @@
-.contact-container {
+/* Main Section */
+.contact-section {
+  padding: 80px 20px;
+  background: #f7f9fc;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 80px; /* ✅ This adds space from top */
 }
 
-.heading {
+/* Title Section */
+.top-title {
   text-align: center;
-  margin-bottom: 30px;
-  font-size: 24px;
-  font-weight: bold;
+  max-width: 700px;
+  margin-bottom: 40px;
 }
-.contact-content {
+
+.top-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+
+.top-title p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.cta-btn {
+  background: #f4b400;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(244, 180, 0, 0.35);
+}
+
+.cta-btn:hover {
+  background: #d99d00;
+}
+
+/* Main Card */
+.contact-card {
   display: flex;
   gap: 40px;
   width: 100%;
   max-width: 1200px;
-  padding: 30px;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 35px;
+  border-radius: 16px;
+
+  /* Premium shadow */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* Left: Form */
+/* Left Form */
 .contact-form {
   flex: 1;
 }
 
-.contact-form form {
+.contact-form h3 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Form Inputs */
+form {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 
 .form-group {
-  flex: 0 0 48%;
+  flex: 0 0 calc(50% - 10px);
   display: flex;
   flex-direction: column;
 }
@@ -44,49 +92,92 @@
 }
 
 label {
-  font-weight: bold;
-  margin-bottom: 5px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
 }
 
-input, textarea {
-  padding: 10px;
-  font-size: 14px;
+input,
+textarea {
+  padding: 12px;
+  border-radius: 8px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  background: #fdfdfd;
+  font-size: 15px;
+
+  /* smooth focus effect */
+  transition: 0.25s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 8px rgba(0, 119, 255, 0.25);
+  outline: none;
 }
 
 textarea {
+  height: 120px;
   resize: vertical;
-  height: 100px;
 }
 
-button {
-  padding: 12px 24px;
-  background-color: #f4b400;
-  color: white;
-  font-weight: bold;
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: #ffb400;
+  color: #000;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
   cursor: pointer;
+  margin-top: 10px;
+
+  box-shadow: 0 6px 20px rgba(255, 179, 0, 0.5);
 }
 
-button:hover {
-  background-color: #d99d00;
+.submit-btn:hover {
+  background: #e1a200;
 }
 
-/* Right: Info + Map */
+/* Right Info Box */
 .contact-info {
-  flex: 1;
-  margin-top: 10%;
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .info-box {
-  margin-bottom: 20px;
+  background: #fff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  font-size: 15px;
+  color: #444;
 }
 
 iframe {
-  border-radius: 6px;
   width: 100%;
-  height: 250px;
+  height: 260px;
+  border-radius: 12px;
   border: none;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-card {
+    flex-direction: column;
+  }
+}
+.top-title{
+  flex-direction: column !important;
+  
+}
+.mb_20{
+  margin-bottom: 20px !important;
+}
+.mt_50 {
+    margin-top: 50px;
 }

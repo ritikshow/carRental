@@ -134,3 +134,15 @@
 .car-title {
   font-size: 1.5rem;
 }
+.card-title {
+  font-size: 14px;
+ font-weight: bold;
+}
+.card-text {
+  font-size: 13px;
+  font-weight: bold;
+  color: black;
+}
+.famlity-font {
+  font-family: 'Roboto', sans-serif;
+}

@@ -1,8 +1,8 @@
 <!-- navbar.component.html -->
 <nav class="navbar">
   <div class="navbar-left">
-    <img src="assets/Logo/car2.jpg" alt="Logo" class="logo" />
-    <span class="logo-name">LogoName</span>
+    <img src="assets/Logo/MainLogo.png" alt="Logo" class="logo" />
+    <span class="logo-name">SSCarRental</span>
   </div>
 
   <div class="hamburger" onclick="document.querySelector('.navbar-right').classList.toggle('active')">
@@ -10,11 +10,11 @@
   </div>
 
   <div class="navbar-right">
-    <a routerLink="/" class="nav-link">Home</a>
-    <a routerLink="/our-services" class="nav-link">Service</a>
-    <a routerLink="/about" class="nav-link">About Us</a>
-    <a routerLink="/fleet" class="nav-link">Fleet</a>
-    <a routerLink="/booking" class="nav-link">Booking</a>
-    <a routerLink="/contact" class="nav-link">Contact</a>
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-link">Home</a>
+    <a routerLink="/our-services" routerLinkActive="active" class="nav-link">Service</a>
+    <a routerLink="/about" routerLinkActive="active" class="nav-link">About Us</a>
+    <a routerLink="/fleet" routerLinkActive="active" class="nav-link">Fleet</a>
+    <a routerLink="/booking" routerLinkActive="active" class="nav-link">Booking</a>
+    <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
   </div>
 </nav>
