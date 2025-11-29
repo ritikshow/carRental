@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/services/api.service';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-booking-form',
@@ -21,13 +22,14 @@ export class BookingFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
      private activeModal: NgbActiveModal,
-     private api : ApiService
+     private api : ApiService,
+    private staticService: StaticDataService
   ) {}
 
   ngOnInit(): void {
     let carsLoaded = false;
     let carDetailLoaded = false;
-
+console.log("Car Id:",this.carId)
     this.Getcar(() => {
       carsLoaded = true;
       if (!this.carId) this.showForm = true;
@@ -56,13 +58,23 @@ export class BookingFormComponent implements OnInit {
     });
 
     if (this.carId) {
-      this.api.GetcarById(this.carId).subscribe(res => {
-        if (res && res.data && res.data.carModel) {
-          this.bookingForm.patchValue({ carType: res.data.carModel });
-        }
-        carDetailLoaded = true;
-        if (carsLoaded && carDetailLoaded) this.showForm = true;
-      });
+      // this.api.GetcarById(this.carId).subscribe(res => {
+      //   if (res && res.data && res.data.carModel) {
+      //     this.bookingForm.patchValue({ carType: res.data.carModel });
+      //   }
+      //   carDetailLoaded = true;
+      //   if (carsLoaded && carDetailLoaded) this.showForm = true;
+      // });
+      const car = this.staticService.getCarById(this.carId);
+
+if (car && car.carModel) {
+  this.bookingForm.patchValue({ carType: car.carModel });
+}
+
+carDetailLoaded = true;
+if (carsLoaded && carDetailLoaded) this.showForm = true;
+
+
     } else {
       carDetailLoaded = true;
     }
@@ -159,20 +171,25 @@ export class BookingFormComponent implements OnInit {
     this.activeModal.close();
   }
 
+  // Getcar(callback?: () => void) {
+  //   this.api.GetCars().subscribe({
+  //     next: (res: any) => {
+  //       this.AllCars = res.data;
+  //       if (callback) callback();
+  //     }
+  //   });
+  // }
+
   Getcar(callback?: () => void) {
-    this.api.GetCars().subscribe({
-      next: (res: any) => {
-        this.AllCars = res.data;
-        if (callback) callback();
-      }
-    });
+    this.AllCars = this.staticService.getAllCars();
+    if (callback) callback();
   }
 
   GetBookingType(){
-     this.api.GetBookingType().subscribe({next: (res:any) => {
-        console.log('Carstype:', res);
-        this.Bookingtypes=res.data;
-      }
-    });
-  }
+  //    this.api.GetBookingType().subscribe({next: (res:any) => {
+  //       console.log('Carstype:', res);
+  //       this.Bookingtypes=res.data;
+  //     }
+  //   });
+    this.Bookingtypes=this.staticService.getAllBookingTypes();}
 }

@@ -23,7 +23,7 @@
         <label>Booking Type</label>
         <select formControlName="bookingType">
           <option value="">Select</option>
-          <option *ngFor="let type of Bookingtypes" [value]="type.type">{{ type.type }}</option>
+          <option *ngFor="let type of Bookingtypes" [value]="type.bookingName">{{ type.bookingName }}</option>
         </select>
       </div>
 

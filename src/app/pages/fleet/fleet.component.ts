@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BookingFormComponent } from '../booking/booking-form/booking-form.component';
 import { ApiService } from 'src/app/services/api.service';
+import { StaticDataService } from 'src/app/services/static-data.service';
 
 @Component({
   selector: 'app-fleet',
@@ -15,64 +16,15 @@ export class FleetComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private api: ApiService
+    private api: ApiService,
+    private staticService: StaticDataService
   ) {}
 
   ngOnInit(): void {
     this.BaseUrl = this.path.replace(/^(.*:\/\/[^\/]+)\/.*/, '$1');
     //this.Getcar();
-    this.AllCars = [
-      {
-        carName: 'innova_crysta',
-        carModel: 'Toyota Innova Crysta',
-        imagePath: 'assets/cars/innova.jpg'
-      },
-      {
-        carName: 'honda_city',
-        carModel: 'Honda City ZX',
-        imagePath: 'assets/cars/Honda city.jpg'
-      },
-      {
-        carName: 'maruti_ertiga',
-        carModel: 'Maruti Suzuki Ertiga',
-        imagePath: 'assets/cars/ertiga2.webp'
-      },
-      {
-        carName: 'mahindra_xuv500',
-        carModel: 'Mahindra XUV500',
-        imagePath: 'assets/cars/download.jpg'
-      },
-      {
-        carName: 'hyundai_verna',
-        carModel: 'Hyundai Verna SX',
-        imagePath: 'assets/cars/dzire.png'
-      },
-      {
-        carName: 'kia_seltos',
-        carModel: 'Kia Seltos GTX',
-        imagePath: 'assets/cars/crystaf.webp'
-      },
-      {
-        carName: 'mg_hector',
-        carModel: 'MG Hector Sharp',
-        imagePath: 'assets/cars/porsche.webp'
-      },
-      {
-        carName: 'toyota_etios',
-        carModel: 'Toyota Etios',
-        imagePath: 'assets/cars/toyotaetios.jpg'
-      },
-      {
-        carName: 'audi_a4',
-        carModel: 'Audi A4',
-        imagePath: 'assets/cars/audi.png'
-      },
-      {
-        carName: 'bmw_5_series',
-        carModel: 'BMW 5 Series',
-        imagePath: 'assets/cars/bmw1.avif'
-      }
-    ];
+    this.AllCars = this.staticService.getAllCars();
+    
   }
 
   steps = [
@@ -96,7 +48,8 @@ export class FleetComponent implements OnInit {
   // }
 
   onBookNow(car: any): void {
-    const carid = car.carId // fallback to car.id if carId is not present
+    debugger
+    const carid = car.id // fallback to car.id if carId is not present
     const modalRef = this.modalService.open(BookingFormComponent, {
       backdrop: 'static',
       windowClass: 'main_add_popup',
