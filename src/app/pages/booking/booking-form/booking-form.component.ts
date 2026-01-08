@@ -137,36 +137,40 @@ if (carsLoaded && carDetailLoaded) this.showForm = true;
 }
 
 
-  onSubmit(): void {
-    debugger;
-    if (this.bookingForm.valid) {
-      console.log('Booking Data:', this.bookingForm.value);
-       const formDataRaw = this.bookingForm.value;
+  // onSubmit(): void {
+  //   debugger;
+  //   if (this.bookingForm.valid) {
+  //     console.log('Booking Data:', this.bookingForm.value);
+  //      const formDataRaw = this.bookingForm.value;
 
-    const formData = new FormData();
-    formData.append('Name', formDataRaw.name);
-    formData.append('Email', formDataRaw.email);
-    formData.append('cartype', formDataRaw.carType);
-     formData.append('Phone_no', formDataRaw.phone);
-    formData.append('BookingType', formDataRaw.bookingType);
-    formData.append('PickupLocation', formDataRaw.pickupLocation);
-    formData.append('PickupDate', formDataRaw.pickupDate);
-    formData.append('PickupTime',  formDataRaw.pickupTime);
-    formData.append('DropLocation', formDataRaw.dropLocation);
-    formData.append('Dropdate',formDataRaw.dropDate);
-    formData.append('Droptime',  formDataRaw.dropTime);
-    formData.append('BookingDate',formDataRaw.bookingDate);
-    formData.append('CompanyEnabled', formDataRaw.CompanyEnabled);
-    formData.append('CompanyName', formDataRaw.companyName);
-    formData.append('CompanyDescription', formDataRaw.companyDescription);
+  //   const formData = new FormData();
+  //   formData.append('Name', formDataRaw.name);
+  //   formData.append('Email', formDataRaw.email);
+  //   formData.append('cartype', formDataRaw.carType);
+  //    formData.append('Phone_no', formDataRaw.phone);
+  //   formData.append('BookingType', formDataRaw.bookingType);
+  //   formData.append('PickupLocation', formDataRaw.pickupLocation);
+  //   formData.append('PickupDate', formDataRaw.pickupDate);
+  //   formData.append('PickupTime',  formDataRaw.pickupTime);
+  //   formData.append('DropLocation', formDataRaw.dropLocation);
+  //   formData.append('Dropdate',formDataRaw.dropDate);
+  //   formData.append('Droptime',  formDataRaw.dropTime);
+  //   formData.append('BookingDate',formDataRaw.bookingDate);
+  //   formData.append('CompanyEnabled', formDataRaw.CompanyEnabled);
+  //   formData.append('CompanyName', formDataRaw.companyName);
+  //   formData.append('CompanyDescription', formDataRaw.companyDescription);
 
-      this.api.CreateBooking(formData).subscribe({next:(res:any)=>{
-        console.log("Booking:",res)
-          this.bookingForm.reset();
-      }})
-      // send to API
-    }
-  }
+  //     this.api.CreateBooking(formData).subscribe({next:(res:any)=>{
+  //       console.log("Booking:",res)
+  //         this.bookingForm.reset();
+  //     }})
+  //     // send to API
+  //   }
+  // }
+
+
+
+
    closeModal() {
     this.activeModal.close();
   }
@@ -192,4 +196,45 @@ if (carsLoaded && carDetailLoaded) this.showForm = true;
   //     }
   //   });
     this.Bookingtypes=this.staticService.getAllBookingTypes();}
+
+
+
+    onSubmit(): void {
+      debugger;
+      if (this.bookingForm.valid) {
+        const formDataRaw = this.bookingForm.value;
+    
+        const data = {
+          Car_Type: formDataRaw.carType,
+          Booking_Type: formDataRaw.bookingType,
+          Booking_Date: formDataRaw.bookingDate,
+          Phone_No: formDataRaw.phone,
+          Full_Name: formDataRaw.name,
+          Email: formDataRaw.email,
+          Pick_Up_location: formDataRaw.pickupLocation,
+          Pick_Time: formDataRaw.pickupTime,
+          Pick_Date: formDataRaw.pickupDate,
+          Drop_location: formDataRaw.dropLocation,
+          Drop_Time: formDataRaw.dropTime,
+          Drop_Date: formDataRaw.dropDate,
+          CompanyName: formDataRaw.companyName,
+          CompanyDescription: formDataRaw.companyDescription
+        };
+    
+        console.log("Sending Data:", data);
+    
+        // Send to Google Apps Script
+        fetch("https://script.google.com/macros/s/AKfycby5R9-LeGPhn9oRuiBvsa-6tXFc0rmEcAEjHkTETU2UMmuSi-quzcECSzhHn7L9Up0SAw/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+    
+        this.bookingForm.reset();
+        this.closeModal();
+        
+      }
+    }
+    
 }

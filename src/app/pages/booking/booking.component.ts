@@ -177,13 +177,15 @@ export class BookingComponent implements OnInit, OnDestroy {
         Pick_Date: formDataRaw.PickupDate,
         Drop_location: formDataRaw.DropLocation,
         Drop_Time: formDataRaw.Droptime,
-        Drop_Date: formDataRaw.Dropdate
+        Drop_Date: formDataRaw.Dropdate,
+        CompanyName: formDataRaw.CompanyName,
+        CompanyDescription: formDataRaw.CompanyDescription
       };
   
       console.log("Sending Data:", data);
   
       // Send to Google Apps Script
-      fetch("https://script.google.com/macros/s/AKfycbwXPK2wm8Zx9NUzZilTCooI08XTWx5PugCOQfeWUKaYGvKkslqFSx9XwE6ssqnS4CqO0w/exec", {
+      fetch("https://script.google.com/macros/s/AKfycby5R9-LeGPhn9oRuiBvsa-6tXFc0rmEcAEjHkTETU2UMmuSi-quzcECSzhHn7L9Up0SAw/exec", {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/json" },
@@ -191,7 +193,6 @@ export class BookingComponent implements OnInit, OnDestroy {
       });
   
       this.bookingForm.reset();
-      alert("Booking sent successfully!");
     }
   }
   
