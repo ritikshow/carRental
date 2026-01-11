@@ -7,7 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e1e2f;
+  background-color: #dadada;
   padding: 10px 30px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -41,7 +41,7 @@
 }
 
 .nav-link {
-  color: #bbb;
+  color: #000;
   text-decoration: none;
   font-weight: 500;
   font-size: 16px;
